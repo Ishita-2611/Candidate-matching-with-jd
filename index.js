@@ -265,6 +265,10 @@ function vectorFileName(vectorDbDir, batchNo) {
   return `${vectorDbDir}/vectors_batch${String(batchNo).padStart(4, "0")}.json`;
 }
 
+function embeddingModelName(dimension) {
+  return `local-hashing-${dimension}`;
+}
+
 function hashToUInt32(value) {
   return createHash("sha256").update(value).digest().readUInt32BE(0);
 }
@@ -292,18 +296,28 @@ function axisText(semanticObject, axis) {
   return JSON.stringify(value ?? {});
 }
 
-function buildVectorRecords(semanticObject, { dimension, batchNo }) {
-  const axes = [
-    "identity",
-    "skills",
-    "experience_summary",
-    "experience_chunks",
-    "domain",
-    "execution_style",
-    "trust_signals",
-  ];
+const semanticAxes = [
+  "identity",
+  "skills",
+  "experience_summary",
+  "experience_chunks",
+  "domain",
+  "execution_style",
+  "trust_signals",
+];
 
-  return axes.map((axis) => {
+function semanticText(semanticObject) {
+  return [
+    `candidate_id: ${semanticObject.candidate_id}`,
+    `metadata: ${JSON.stringify(semanticObject.metadata ?? {})}`,
+    ...semanticAxes.map((axis) => `${axis}: ${axisText(semanticObject, axis)}`),
+  ].join("\n");
+}
+
+function buildVectorRecords(semanticObject, { dimension, batchNo }) {
+  const modelName = embeddingModelName(dimension);
+  const fullText = semanticText(semanticObject);
+  const axisRecords = semanticAxes.map((axis) => {
     const text = axisText(semanticObject, axis);
 
     return {
@@ -311,13 +325,28 @@ function buildVectorRecords(semanticObject, { dimension, batchNo }) {
       candidate_id: semanticObject.candidate_id,
       axis,
       text,
-      embedding_model: `local-hashing-${dimension}`,
+      embedding_model: modelName,
       embedding_dimension: dimension,
       embedding: embedText(text, dimension),
       metadata: semanticObject.metadata,
       source_batch_no: batchNo,
     };
   });
+
+  return [
+    {
+      id: `${semanticObject.candidate_id}:full`,
+      candidate_id: semanticObject.candidate_id,
+      axis: "full",
+      text: fullText,
+      embedding_model: modelName,
+      embedding_dimension: dimension,
+      embedding: embedText(fullText, dimension),
+      metadata: semanticObject.metadata,
+      source_batch_no: batchNo,
+    },
+    ...axisRecords,
+  ];
 }
 
 async function convertJsonlFile(
@@ -341,14 +370,14 @@ async function convertJsonlFile(
     `${vectorDbDir}/config.json`,
     `${JSON.stringify(
       {
-        embedding_model: `local-hashing-${embeddingDimension}`,
+        embedding_model: embeddingModelName(embeddingDimension),
         embedding_dimension: embeddingDimension,
         distance: "cosine",
         record_shape: {
           id: "candidate_id:axis",
           candidate_id: "string",
-          axis: "identity|skills|experience_summary|experience_chunks|domain|execution_style|trust_signals",
-          text: "stringified semantic axis JSON",
+          axis: "full|identity|skills|experience_summary|experience_chunks|domain|execution_style|trust_signals",
+          text: "semantic text used for embedding",
           embedding: "normalized numeric vector",
           metadata: "candidate metadata",
         },
@@ -545,6 +574,7 @@ const exampleCandidate = {
     console.log(`Output batch size: ${batchSize}`);
     console.log(`Output dir: ${outputDir}`);
     console.log(`Vector DB dir: ${vectorDbDir}`);
+    console.log(`Embedding model: ${embeddingModelName(embeddingDimension)}`);
     console.log(`Embedding dimension: ${embeddingDimension}`);
     console.log(`API Key configured: ${apiKey ? "Yes" : "No"}`);
 
@@ -576,5 +606,9 @@ export {
   convertCandidateToSemanticObject,
   convertBatch,
   convertJsonlFile,
+  buildVectorRecords,
+  embedText,
+  embeddingModelName,
+  semanticText,
   readFirstJsonlObjects,
 };
