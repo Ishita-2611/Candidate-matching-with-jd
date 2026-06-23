@@ -1,8 +1,12 @@
 .env
 .enc
 candidates.jsonl
+output.json
+output*.json
 node_modules/
 batches/
 batch*/
 vector_db/
 vector_db*/
+qdrant_storage/
+model_cache/

@@ -1,7 +1,12 @@
 import OpenAI from "openai";
+import { env, pipeline } from "@xenova/transformers";
 import { createHash } from "node:crypto";
-import { appendFileSync, createReadStream, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, createReadStream, mkdirSync, writeFileSync } from "node:fs";
+import { pathToFileURL } from "node:url";
 import readline from "node:readline";
+
+env.allowLocalModels = true;
+env.cacheDir = process.env.TRANSFORMERS_CACHE || "./model_cache";
 
 try {
   process.loadEnvFile?.();
@@ -11,24 +16,9 @@ try {
   }
 }
 
-function readRawKeyFile(path) {
-  if (!existsSync(path)) {
-    return undefined;
-  }
-
-  const line = readFileSync(path, "utf8")
-    .split(/\r?\n/)
-    .map((value) => value.trim())
-    .find((value) => value && !value.startsWith("#") && !value.includes("="));
-
-  return line;
-}
-
-const apiKey =
-  process.env.GROQ_API_KEY ||
-  readRawKeyFile(".env") ||
-  readRawKeyFile(".enc");
+const apiKey = process.env.GROQ_API_KEY;
 const model = process.env.GROQ_MODEL || "meta-llama/llama-4-scout-17b-16e-instruct";
+const groqBaseUrl = process.env.GROQ_BASE_URL || "https://api.groq.com/openai/v1";
 
 if (!apiKey) {
   throw new Error("GROQ_API_KEY is required");
@@ -36,7 +26,7 @@ if (!apiKey) {
 
 const openai = new OpenAI({
   apiKey,
-  baseURL: "https://api.groq.com/openai/v1",
+  baseURL: groqBaseUrl,
 });
 
 // Prompt builder
@@ -265,8 +255,27 @@ function vectorFileName(vectorDbDir, batchNo) {
   return `${vectorDbDir}/vectors_batch${String(batchNo).padStart(4, "0")}.json`;
 }
 
-function embeddingModelName(dimension) {
-  return `local-hashing-${dimension}`;
+const embeddingProvider = process.env.EMBEDDING_PROVIDER || "transformers";
+const embeddingModel = process.env.EMBEDDING_MODEL || "Xenova/bge-m3";
+let embeddingPipeline;
+let embeddingPipelinePromise;
+
+function embeddingModelName() {
+  return embeddingModel;
+}
+
+async function getEmbeddingPipeline() {
+  if (!embeddingPipeline) {
+    embeddingPipelinePromise ||= pipeline("feature-extraction", embeddingModel);
+    embeddingPipeline = await embeddingPipelinePromise;
+  }
+
+  return embeddingPipeline;
+}
+
+function qdrantPointId(value) {
+  const hex = createHash("sha256").update(value).digest("hex").slice(0, 32);
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
 }
 
 function hashToUInt32(value) {
@@ -277,7 +286,7 @@ function tokenize(text) {
   return String(text).toLowerCase().match(/[a-z0-9+#.-]+/g) || [];
 }
 
-function embedText(text, dimension) {
+function embedTextWithHashing(text, dimension) {
   const vector = Array.from({ length: dimension }, () => 0);
 
   for (const token of tokenize(text)) {
@@ -289,6 +298,22 @@ function embedText(text, dimension) {
 
   const norm = Math.sqrt(vector.reduce((sum, value) => sum + value * value, 0)) || 1;
   return vector.map((value) => Number((value / norm).toFixed(6)));
+}
+
+async function embedText(text, dimension) {
+  if (embeddingProvider === "local-hashing") {
+    return embedTextWithHashing(text, dimension);
+  }
+
+  const extractor = await getEmbeddingPipeline();
+  const output = await extractor(text, { pooling: "mean", normalize: true });
+  const embedding = Array.from(output.data, (value) => Number(value.toFixed(6)));
+
+  if (embedding.length !== dimension) {
+    throw new Error(`Embedding dimension mismatch for ${embeddingModel}: expected ${dimension}, got ${embedding.length}`);
+  }
+
+  return embedding;
 }
 
 function axisText(semanticObject, axis) {
@@ -314,24 +339,26 @@ function semanticText(semanticObject) {
   ].join("\n");
 }
 
-function buildVectorRecords(semanticObject, { dimension, batchNo }) {
-  const modelName = embeddingModelName(dimension);
+async function buildVectorRecords(semanticObject, { dimension, batchNo }) {
+  const modelName = embeddingModelName();
   const fullText = semanticText(semanticObject);
-  const axisRecords = semanticAxes.map((axis) => {
+  const axisRecords = [];
+
+  for (const axis of semanticAxes) {
     const text = axisText(semanticObject, axis);
 
-    return {
+    axisRecords.push({
       id: `${semanticObject.candidate_id}:${axis}`,
       candidate_id: semanticObject.candidate_id,
       axis,
       text,
       embedding_model: modelName,
       embedding_dimension: dimension,
-      embedding: embedText(text, dimension),
+      embedding: await embedText(text, dimension),
       metadata: semanticObject.metadata,
       source_batch_no: batchNo,
-    };
-  });
+    });
+  }
 
   return [
     {
@@ -341,7 +368,7 @@ function buildVectorRecords(semanticObject, { dimension, batchNo }) {
       text: fullText,
       embedding_model: modelName,
       embedding_dimension: dimension,
-      embedding: embedText(fullText, dimension),
+      embedding: await embedText(fullText, dimension),
       metadata: semanticObject.metadata,
       source_batch_no: batchNo,
     },
@@ -349,9 +376,98 @@ function buildVectorRecords(semanticObject, { dimension, batchNo }) {
   ];
 }
 
+function vectorRecordToQdrantPoint(record) {
+  return {
+    id: qdrantPointId(record.id),
+    vector: record.embedding,
+    payload: {
+      record_id: record.id,
+      candidate_id: record.candidate_id,
+      axis: record.axis,
+      text: record.text,
+      embedding_model: record.embedding_model,
+      embedding_dimension: record.embedding_dimension,
+      metadata: record.metadata,
+      source_batch_no: record.source_batch_no,
+    },
+  };
+}
+
+async function qdrantRequest(qdrantUrl, path, { method = "GET", body } = {}) {
+  const response = await fetch(`${qdrantUrl}${path}`, {
+    method,
+    headers: body ? { "content-type": "application/json" } : undefined,
+    body: body ? JSON.stringify(body) : undefined,
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Qdrant ${method} ${path} failed: ${response.status} ${text}`);
+  }
+
+  return response.json();
+}
+
+async function ensureQdrantCollection({ qdrantUrl, collectionName, dimension }) {
+  const existing = await fetch(`${qdrantUrl}/collections/${collectionName}`);
+
+  if (existing.ok) {
+    const body = await existing.json();
+    const existingSize = body.result?.config?.params?.vectors?.size;
+
+    if (existingSize && existingSize !== dimension) {
+      throw new Error(
+        `Qdrant collection ${collectionName} has dimension ${existingSize}, expected ${dimension}. Use a new QDRANT_COLLECTION or delete the old collection.`
+      );
+    }
+
+    return;
+  }
+
+  await qdrantRequest(qdrantUrl, `/collections/${collectionName}`, {
+    method: "PUT",
+    body: {
+      vectors: {
+        size: dimension,
+        distance: "Cosine",
+      },
+    },
+  });
+}
+
+async function upsertQdrantVectors({ qdrantUrl, collectionName, vectorRecords }) {
+  if (vectorRecords.length === 0) {
+    return;
+  }
+
+  const chunkSize = parsePositiveInt(process.env.QDRANT_UPSERT_BATCH_SIZE, 4);
+
+  for (let i = 0; i < vectorRecords.length; i += chunkSize) {
+    await qdrantRequest(qdrantUrl, `/collections/${collectionName}/points?wait=true`, {
+      method: "PUT",
+      body: {
+        points: vectorRecords.slice(i, i + chunkSize).map(vectorRecordToQdrantPoint),
+      },
+    });
+  }
+}
+
 async function convertJsonlFile(
   filePath,
-  { limit, concurrency, batchSize, outputDir, manifestJson, errorJsonl, vectorDbDir, vectorIndexJsonl, embeddingDimension }
+  {
+    limit,
+    concurrency,
+    batchSize,
+    outputDir,
+    manifestJson,
+    errorJsonl,
+    vectorDbDir,
+    vectorIndexJsonl,
+    embeddingDimension,
+    useQdrant,
+    qdrantUrl,
+    qdrantCollection,
+  }
 ) {
   const manifest = [];
   let processed = 0;
@@ -366,13 +482,28 @@ async function convertJsonlFile(
   mkdirSync(vectorDbDir, { recursive: true });
   writeFileSync(errorJsonl, "");
   writeFileSync(vectorIndexJsonl, "");
+
+  if (useQdrant) {
+    await ensureQdrantCollection({
+      qdrantUrl,
+      collectionName: qdrantCollection,
+      dimension: embeddingDimension,
+    });
+  }
+
   writeFileSync(
     `${vectorDbDir}/config.json`,
     `${JSON.stringify(
       {
-        embedding_model: embeddingModelName(embeddingDimension),
+        embedding_model: embeddingModelName(),
         embedding_dimension: embeddingDimension,
         distance: "cosine",
+        qdrant: useQdrant
+          ? {
+              url: qdrantUrl,
+              collection: qdrantCollection,
+            }
+          : undefined,
         record_shape: {
           id: "candidate_id:axis",
           candidate_id: "string",
@@ -387,23 +518,36 @@ async function convertJsonlFile(
     )}\n`
   );
 
-  function writeBatchIfReady(force = false) {
+  async function writeBatchIfReady(force = false) {
     if (currentBatch.length === 0 || (!force && currentBatch.length < batchSize)) {
       return;
     }
 
     const file = batchFileName(outputDir, currentBatchNo);
     const vectorFile = vectorFileName(vectorDbDir, currentBatchNo);
-    const vectorRecords = currentBatch.flatMap((semanticObject) =>
-      buildVectorRecords(semanticObject, {
-        dimension: embeddingDimension,
-        batchNo: currentBatchNo,
-      })
-    );
+    const vectorRecords = [];
+
+    for (const semanticObject of currentBatch) {
+      vectorRecords.push(
+        ...(await buildVectorRecords(semanticObject, {
+          dimension: embeddingDimension,
+          batchNo: currentBatchNo,
+        }))
+      );
+    }
 
     writeFileSync(file, `${JSON.stringify(currentBatch, null, 2)}\n`);
     writeFileSync(vectorFile, `${JSON.stringify(vectorRecords, null, 2)}\n`);
     appendFileSync(vectorIndexJsonl, vectorRecords.map((record) => JSON.stringify(record)).join("\n") + "\n");
+
+    if (useQdrant) {
+      await upsertQdrantVectors({
+        qdrantUrl,
+        collectionName: qdrantCollection,
+        vectorRecords,
+      });
+    }
+
     vectorCount += vectorRecords.length;
 
     manifest.push({
@@ -427,14 +571,14 @@ async function convertJsonlFile(
 
     const settled = await Promise.allSettled(chunk.map((candidate) => convertWithRetry(candidate)));
 
-    settled.forEach((outcome, index) => {
+    for (const [index, outcome] of settled.entries()) {
       const candidate = chunk[index];
       processed += 1;
 
       if (outcome.status === "fulfilled") {
         succeeded += 1;
         currentBatch.push(outcome.value);
-        writeBatchIfReady();
+        await writeBatchIfReady();
       } else {
         failed += 1;
         appendFileSync(
@@ -449,7 +593,7 @@ async function convertJsonlFile(
       if (processed % 25 === 0 || processed === limit) {
         console.log(`Progress ${processed}/${limit} | ok=${succeeded} failed=${failed}`);
       }
-    });
+    }
   }
 
   const rl = readline.createInterface({
@@ -479,83 +623,15 @@ async function convertJsonlFile(
     await flush();
   }
 
-  writeBatchIfReady(true);
+  await writeBatchIfReady(true);
   writeFileSync(manifestJson, `${JSON.stringify(manifest, null, 2)}\n`);
 
   return { processed, succeeded, failed, batches: manifest.length, vectorCount };
 }
 
-// Example usage
-
-const exampleCandidate = {
-  candidate_id: "CAND_0000001",
-  metadata: {
-    years_of_experience: 6.9,
-    location: "Toronto",
-    country: "Canada",
-    open_to_work: true,
-    preferred_work_mode: "onsite",
-    notice_period_days: 60,
-    salary_range_lpa: { min: 18.7, max: 36.1 },
-  },
-  semantic_axes: {
-    identity: {
-      role_family: "Data Infrastructure Engineer",
-      secondary_roles: ["Backend Engineer", "ML Infrastructure Engineer", "Data Engineer"],
-      seniority: "Mid-Senior",
-      career_transition: { from: "Data Engineering", to: "Applied ML / AI Infrastructure" },
-    },
-    skills: {
-      core_production_skills: ["Python", "SQL", "Spark", "Kafka", "Airflow", "Streaming Pipelines", "Data Warehousing"],
-      ml_skills: ["NLP", "Fine-tuning LLMs", "LoRA", "Statistical Modeling", "Image Classification", "Speech Recognition", "TTS", "GANs"],
-      ml_infra_skills: ["Milvus", "BentoML", "Weights & Biases"],
-      weak_skills: ["AWS", "GCP", "Apache Beam"],
-      noisy_non_relevant_skills: ["Tailwind", "Photoshop"],
-    },
-    experience_summary: {
-      system_types: ["Batch Processing", "Streaming Systems", "Analytics Pipelines", "Feature Engineering Pipelines"],
-      scale: { daily_data_processed: "500GB", source_systems: 12, realtime_systems: true },
-      production_maturity: "high",
-      ml_maturity: "moderate-low",
-    },
-    experience_chunks: [
-      {
-        id: "chunk_1",
-        description: "Implemented streaming data pipelines on Kafka and Spark Streaming for a real-time user-activity processing platform.",
-        tags: ["streaming", "kafka", "spark", "realtime"],
-      },
-      {
-        id: "chunk_2",
-        description: "Built and maintained data pipelines on Apache Airflow processing ~500GB of daily transactional data across 12 source systems using Spark and dbt in Snowflake.",
-        tags: ["batch-processing", "airflow", "spark", "dbt", "snowflake", "data-warehouse"],
-      },
-    ],
-    domain: {
-      primary_domains: ["Data Infrastructure", "Analytics Engineering", "Enterprise Systems"],
-      secondary_domains: ["Internal ML Systems", "Feature Platforms"],
-      missing_domains: ["Search", "Ranking", "Recommendation Systems", "Marketplace"],
-    },
-    execution_style: {
-      shipping_bias: "high",
-      product_mindset: "medium",
-      research_bias: "low-medium",
-      ambiguity_tolerance: "medium",
-      ownership: "high",
-      system_design_depth: "high",
-    },
-    trust_signals: {
-      github_score: 9.2,
-      profile_completeness: 86.9,
-      recruiter_response_rate: 0.34,
-      interview_completion_rate: 0.71,
-      offer_acceptance_rate: 0.58,
-    },
-  },
-};
-
-// Run
-(async () => {
+async function main() {
   try {
+    const inputJsonl = process.env.INPUT_JSONL || "candidates.jsonl";
     const limit = parsePositiveInt(process.env.BATCH_LIMIT, 5000);
     const concurrency = parsePositiveInt(process.env.CONCURRENCY, 5);
     const batchSize = parsePositiveInt(process.env.OUTPUT_BATCH_SIZE, 100);
@@ -564,21 +640,32 @@ const exampleCandidate = {
     const errorJsonl = process.env.ERROR_JSONL || `${outputDir}/output.errors.jsonl`;
     const vectorDbDir = process.env.VECTOR_DB_DIR || "vector_db";
     const vectorIndexJsonl = process.env.VECTOR_INDEX_JSONL || `${vectorDbDir}/index.jsonl`;
-    const embeddingDimension = parsePositiveInt(process.env.EMBEDDING_DIM, 384);
+    const embeddingDimension = parsePositiveInt(process.env.EMBEDDING_DIM, 1024);
+    const useQdrant = process.env.USE_QDRANT !== "false";
+    const qdrantUrl = process.env.QDRANT_URL || "http://localhost:6333";
+    const qdrantCollection = process.env.QDRANT_COLLECTION || "candidate_embeddings_bge_m3";
 
     console.log("Starting semantic object generation...\n");
     console.log("Provider: groq");
+    console.log(`Input JSONL: ${inputJsonl}`);
     console.log(`Model: ${model}`);
+    console.log(`Groq base URL configured: ${groqBaseUrl ? "Yes" : "No"}`);
     console.log(`Limit: ${limit}`);
     console.log(`Concurrency: ${concurrency}`);
     console.log(`Output batch size: ${batchSize}`);
     console.log(`Output dir: ${outputDir}`);
     console.log(`Vector DB dir: ${vectorDbDir}`);
-    console.log(`Embedding model: ${embeddingModelName(embeddingDimension)}`);
+    console.log(`Embedding provider: ${embeddingProvider}`);
+    console.log(`Embedding model: ${embeddingModelName()}`);
     console.log(`Embedding dimension: ${embeddingDimension}`);
+    console.log(`Qdrant enabled: ${useQdrant ? "Yes" : "No"}`);
+    if (useQdrant) {
+      console.log(`Qdrant URL: ${qdrantUrl}`);
+      console.log(`Qdrant collection: ${qdrantCollection}`);
+    }
     console.log(`API Key configured: ${apiKey ? "Yes" : "No"}`);
 
-    const summary = await convertJsonlFile("candidates.jsonl", {
+    const summary = await convertJsonlFile(inputJsonl, {
       limit,
       concurrency,
       batchSize,
@@ -588,6 +675,9 @@ const exampleCandidate = {
       vectorDbDir,
       vectorIndexJsonl,
       embeddingDimension,
+      useQdrant,
+      qdrantUrl,
+      qdrantCollection,
     });
 
     console.log(`\nSaved ${summary.succeeded} semantic objects across ${summary.batches} batch files`);
@@ -599,7 +689,11 @@ const exampleCandidate = {
     console.error("Full error:", error);
     process.exit(1);
   }
-})();
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}
 
 export {
   convertCandidateToSemanticText,
@@ -609,6 +703,10 @@ export {
   buildVectorRecords,
   embedText,
   embeddingModelName,
+  ensureQdrantCollection,
+  qdrantPointId,
+  upsertQdrantVectors,
+  vectorRecordToQdrantPoint,
   semanticText,
   readFirstJsonlObjects,
 };
