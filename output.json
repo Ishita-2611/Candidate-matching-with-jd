@@ -1,0 +1,534 @@
+[
+  {
+    "candidate_id": "CAND_0000001",
+    "metadata": {
+      "years_of_experience": 6.9,
+      "location": "Toronto",
+      "country": "Canada",
+      "open_to_work": true,
+      "preferred_work_mode": "onsite",
+      "notice_period_days": 60,
+      "salary_range_lpa": {
+        "min": 18.7,
+        "max": 36.1
+      }
+    },
+    "semantic_axes": {
+      "identity": {
+        "role_family": "Backend Engineer",
+        "secondary_roles": [
+          "Analytics Engineer",
+          "Data Engineer"
+        ],
+        "seniority": "mid-level",
+        "career_transition": {
+          "from": "Data Engineering",
+          "to": "AI/ML-focused work"
+        }
+      },
+      "skills": {
+        "core_production_skills": [
+          "Python",
+          "SQL",
+          "Spark",
+          "Airflow"
+        ],
+        "ml_skills": [
+          "NLP",
+          "Image Classification",
+          "Fine-tuning LLMs",
+          "Speech Recognition"
+        ],
+        "ml_infra_skills": [
+          "Milvus",
+          "BentoML",
+          "Weights & Biases"
+        ],
+        "weak_skills": [
+          "AWS",
+          "Flask",
+          "GCP"
+        ],
+        "noisy_non_relevant_skills": [
+          "Photoshop",
+          "Tailwind",
+          "LoRA"
+        ]
+      },
+      "experience_summary": {
+        "system_types": [
+          "data pipelines",
+          "backend systems",
+          "analytics infrastructure"
+        ],
+        "scale": {
+          "daily_data_processed": "~500GB",
+          "source_systems": 12,
+          "realtime_systems": true
+        },
+        "production_maturity": "high",
+        "ml_maturity": "moderate"
+      },
+      "experience_chunks": [
+        {
+          "id": "chunk_1",
+          "description": "Implemented streaming data pipelines on Kafka and Spark Streaming for a real-time user-activity processing platform at Mindtree.",
+          "tags": [
+            "data engineering",
+            "real-time processing"
+          ]
+        },
+        {
+          "id": "chunk_2",
+          "description": "Built and maintained data pipelines on Apache Airflow processing ~500GB of daily transactional data across 12 source systems at Dunder Mifflin.",
+          "tags": [
+            "data engineering",
+            "batch processing"
+          ]
+        }
+      ],
+      "domain": {
+        "primary_domains": [
+          "IT Services",
+          "Paper Products"
+        ],
+        "secondary_domains": [
+          "Data Science",
+          "Machine Learning"
+        ],
+        "missing_domains": []
+      },
+      "execution_style": {
+        "shipping_bias": "medium",
+        "product_mindset": "medium",
+        "research_bias": "medium",
+        "ambiguity_tolerance": "medium",
+        "ownership": "medium",
+        "system_design_depth": "medium"
+      },
+      "trust_signals": {
+        "github_score": 9.2,
+        "profile_completeness": 86.9,
+        "recruiter_response_rate": 0.34,
+        "interview_completion_rate": 0.71,
+        "offer_acceptance_rate": 0.58
+      }
+    }
+  },
+  {
+    "candidate_id": "CAND_0000002",
+    "metadata": {
+      "years_of_experience": 12.5,
+      "location": "Chennai, Tamil Nadu",
+      "country": "India",
+      "open_to_work": true,
+      "preferred_work_mode": "flexible",
+      "notice_period_days": 60,
+      "salary_range_lpa": {
+        "min": 8.8,
+        "max": 9
+      }
+    },
+    "semantic_axes": {
+      "identity": {
+        "role_family": "Operations",
+        "secondary_roles": [
+          "Marketing",
+          "Engineering"
+        ],
+        "seniority": "senior",
+        "career_transition": {
+          "from": "Marketing",
+          "to": "Operations"
+        }
+      },
+      "skills": {
+        "core_production_skills": [
+          "Project Management",
+          "Feature Engineering"
+        ],
+        "ml_skills": [],
+        "ml_infra_skills": [],
+        "weak_skills": [
+          "TypeScript",
+          "JavaScript",
+          "Marketing"
+        ],
+        "noisy_non_relevant_skills": [
+          "Photoshop",
+          "React"
+        ]
+      },
+      "experience_summary": {
+        "system_types": [],
+        "scale": {
+          "daily_data_processed": "unknown",
+          "source_systems": 0,
+          "realtime_systems": false
+        },
+        "production_maturity": "moderate",
+        "ml_maturity": "low"
+      },
+      "experience_chunks": [
+        {
+          "id": "chunk_1",
+          "description": "Led customer support team at Wipro, managed a team of 8 support agents, owned escalation process, and built support knowledge base.",
+          "tags": [
+            "team_lead",
+            "customer_support",
+            "process_owner"
+          ]
+        },
+        {
+          "id": "chunk_2",
+          "description": "Worked on mechanical engineering design role at Wipro, led design of two product subsystems, and worked with manufacturing partners.",
+          "tags": [
+            "engineering_design",
+            "product_development",
+            "manufacturing"
+          ]
+        },
+        {
+          "id": "chunk_3",
+          "description": "Content writing and SEO strategy for a tech-focused publication, managed freelance writer pool, and used AI-assisted content production tools.",
+          "tags": [
+            "content_writing",
+            "SEO",
+            "AI-assisted_content"
+          ]
+        }
+      ],
+      "domain": {
+        "primary_domains": [
+          "IT Services"
+        ],
+        "secondary_domains": [
+          "Manufacturing",
+          "Paper Products"
+        ],
+        "missing_domains": []
+      },
+      "execution_style": {
+        "shipping_bias": "medium",
+        "product_mindset": "medium",
+        "research_bias": "medium",
+        "ambiguity_tolerance": "medium",
+        "ownership": "high",
+        "system_design_depth": "low"
+      },
+      "trust_signals": {
+        "github_score": -1,
+        "profile_completeness": 78.7,
+        "recruiter_response_rate": 0.29,
+        "interview_completion_rate": 0.62,
+        "offer_acceptance_rate": -1
+      }
+    }
+  },
+  {
+    "candidate_id": "CAND_0000003",
+    "metadata": {
+      "years_of_experience": 1.1,
+      "location": "Austin",
+      "country": "USA",
+      "open_to_work": false,
+      "preferred_work_mode": "hybrid",
+      "notice_period_days": 150,
+      "salary_range_lpa": {
+        "min": 11.2,
+        "max": 18.1
+      }
+    },
+    "semantic_axes": {
+      "identity": {
+        "role_family": "Customer Support",
+        "secondary_roles": [],
+        "seniority": "entry-level",
+        "career_transition": {
+          "from": "",
+          "to": ""
+        }
+      },
+      "skills": {
+        "core_production_skills": [
+          "Excel",
+          "Angular"
+        ],
+        "ml_skills": [],
+        "ml_infra_skills": [],
+        "weak_skills": [
+          "SEO",
+          "Accounting"
+        ],
+        "noisy_non_relevant_skills": [
+          "Kubernetes",
+          "Databricks"
+        ]
+      },
+      "experience_summary": {
+        "system_types": [],
+        "scale": {
+          "daily_data_processed": "unknown",
+          "source_systems": 0,
+          "realtime_systems": false
+        },
+        "production_maturity": "low",
+        "ml_maturity": "low"
+      },
+      "experience_chunks": [
+        {
+          "id": "chunk_1",
+          "description": "Customer Support experience at TCS with 1.1+ years of experience. Conducted business diagnostics and process re-engineering work.",
+          "tags": [
+            "Customer Support",
+            "IT Services"
+          ]
+        }
+      ],
+      "domain": {
+        "primary_domains": [
+          "IT Services"
+        ],
+        "secondary_domains": [],
+        "missing_domains": []
+      },
+      "execution_style": {
+        "shipping_bias": "low",
+        "product_mindset": "low",
+        "research_bias": "low",
+        "ambiguity_tolerance": "low",
+        "ownership": "low",
+        "system_design_depth": "low"
+      },
+      "trust_signals": {
+        "github_score": -1,
+        "profile_completeness": 31.9,
+        "recruiter_response_rate": 0.46,
+        "interview_completion_rate": 0.86,
+        "offer_acceptance_rate": -1
+      }
+    }
+  },
+  {
+    "candidate_id": "CAND_0000004",
+    "metadata": {
+      "years_of_experience": 3.8,
+      "location": "Sydney",
+      "country": "Australia",
+      "open_to_work": false,
+      "preferred_work_mode": "onsite",
+      "notice_period_days": 120,
+      "salary_range_lpa": {
+        "min": 4.6,
+        "max": 6.7
+      }
+    },
+    "semantic_axes": {
+      "identity": {
+        "role_family": "Marketing",
+        "secondary_roles": [
+          "Operations Manager",
+          "Business Analyst"
+        ],
+        "seniority": "senior",
+        "career_transition": {
+          "from": "Marketing",
+          "to": "AI-Augmented Marketing"
+        }
+      },
+      "skills": {
+        "core_production_skills": [
+          "Marketing Manager",
+          "Content Writing"
+        ],
+        "ml_skills": [
+          "Object Detection"
+        ],
+        "ml_infra_skills": [
+          "Airflow",
+          "Node.js"
+        ],
+        "weak_skills": [
+          "Six Sigma"
+        ],
+        "noisy_non_relevant_skills": [
+          "Redux",
+          "GraphQL",
+          "Webpack"
+        ]
+      },
+      "experience_summary": {
+        "system_types": [
+          "Marketing Automation"
+        ],
+        "scale": {
+          "daily_data_processed": "unknown",
+          "source_systems": 0,
+          "realtime_systems": false
+        },
+        "production_maturity": "moderate",
+        "ml_maturity": "moderate-low"
+      },
+      "experience_chunks": [
+        {
+          "id": "chunk_1",
+          "description": "Marketing manager with 3.8+ years of experience. Built and led teams, owned KPIs, and driven business outcomes. Experimented with AI tools like ChatGPT for productivity and content creation.",
+          "tags": [
+            "Marketing",
+            "AI",
+            "Leadership"
+          ]
+        },
+        {
+          "id": "chunk_2",
+          "description": "Operations management role at a logistics company. Owned daily fulfillment operations across 3 warehouses, managing a team of 80.",
+          "tags": [
+            "Operations",
+            "Logistics",
+            "Team Management"
+          ]
+        }
+      ],
+      "domain": {
+        "primary_domains": [
+          "Marketing",
+          "Operations"
+        ],
+        "secondary_domains": [
+          "AI",
+          "Logistics"
+        ],
+        "missing_domains": [
+          "Sales",
+          "Finance"
+        ]
+      },
+      "execution_style": {
+        "shipping_bias": "medium",
+        "product_mindset": "medium",
+        "research_bias": "medium",
+        "ambiguity_tolerance": "medium",
+        "ownership": "medium",
+        "system_design_depth": "low"
+      },
+      "trust_signals": {
+        "github_score": -1,
+        "profile_completeness": 28.5,
+        "recruiter_response_rate": 0.26,
+        "interview_completion_rate": 0.35,
+        "offer_acceptance_rate": -1
+      }
+    }
+  },
+  {
+    "candidate_id": "CAND_0000005",
+    "metadata": {
+      "years_of_experience": 11,
+      "location": "Gurgaon, Haryana",
+      "country": "India",
+      "open_to_work": true,
+      "preferred_work_mode": "hybrid",
+      "notice_period_days": 30,
+      "salary_range_lpa": {
+        "min": 12.4,
+        "max": 19.7
+      }
+    },
+    "semantic_axes": {
+      "identity": {
+        "role_family": "Accountant",
+        "secondary_roles": [
+          "HR Manager",
+          "Business Analyst"
+        ],
+        "seniority": "senior",
+        "career_transition": {
+          "from": "Accounting",
+          "to": "AI-enabled Accounting"
+        }
+      },
+      "skills": {
+        "core_production_skills": [
+          "SQL",
+          "PowerPoint"
+        ],
+        "ml_skills": [
+          "Image Classification"
+        ],
+        "ml_infra_skills": [
+          "Apache Flink"
+        ],
+        "weak_skills": [
+          "Photoshop",
+          "Tailwind"
+        ],
+        "noisy_non_relevant_skills": [
+          "Photoshop",
+          "Tailwind"
+        ]
+      },
+      "experience_summary": {
+        "system_types": [
+          "ERP",
+          "Financial Systems"
+        ],
+        "scale": {
+          "daily_data_processed": "large",
+          "source_systems": 5,
+          "realtime_systems": false
+        },
+        "production_maturity": "moderate",
+        "ml_maturity": "moderate-low"
+      },
+      "experience_chunks": [
+        {
+          "id": "chunk_1",
+          "description": "Business analyst and accountant with 11+ years of experience in driving outcomes through process, people, and customer relationships.",
+          "tags": [
+            "Accounting",
+            "Business Analysis",
+            "Process Improvement"
+          ]
+        },
+        {
+          "id": "chunk_2",
+          "description": "Experienced in AI-strategy advisory and experimenting with AI tools like ChatGPT for productivity and content creation.",
+          "tags": [
+            "AI",
+            "Productivity",
+            "Content Creation"
+          ]
+        }
+      ],
+      "domain": {
+        "primary_domains": [
+          "Accounting",
+          "Finance"
+        ],
+        "secondary_domains": [
+          "HR",
+          "Marketing"
+        ],
+        "missing_domains": [
+          "Technology",
+          "Software Development"
+        ]
+      },
+      "execution_style": {
+        "shipping_bias": "medium",
+        "product_mindset": "medium",
+        "research_bias": "low",
+        "ambiguity_tolerance": "medium",
+        "ownership": "high",
+        "system_design_depth": "low"
+      },
+      "trust_signals": {
+        "github_score": -1,
+        "profile_completeness": 84.6,
+        "recruiter_response_rate": 0.37,
+        "interview_completion_rate": 0.74,
+        "offer_acceptance_rate": -1
+      }
+    }
+  }
+]
