@@ -260,7 +260,11 @@ const embeddingModel = process.env.EMBEDDING_MODEL || "Xenova/bge-m3";
 let embeddingPipeline;
 let embeddingPipelinePromise;
 
-function embeddingModelName() {
+function embeddingModelName(dimension = parsePositiveInt(process.env.EMBEDDING_DIM, 1024)) {
+  if (embeddingProvider === "local-hashing") {
+    return `local-hashing-${dimension}`;
+  }
+
   return embeddingModel;
 }
 
@@ -331,6 +335,14 @@ const semanticAxes = [
   "trust_signals",
 ];
 
+const vectorNames = [
+  "skills_vector",
+  "role_vector",
+  "experience_vector",
+  "impact_vector",
+  "education_vector",
+];
+
 function semanticText(semanticObject) {
   return [
     `candidate_id: ${semanticObject.candidate_id}`,
@@ -339,55 +351,85 @@ function semanticText(semanticObject) {
   ].join("\n");
 }
 
-async function buildVectorRecords(semanticObject, { dimension, batchNo }) {
-  const modelName = embeddingModelName();
-  const fullText = semanticText(semanticObject);
-  const axisRecords = [];
+function vectorTexts(semanticObject) {
+  const axes = semanticObject.semantic_axes ?? {};
+  const metadata = semanticObject.metadata ?? {};
 
-  for (const axis of semanticAxes) {
-    const text = axisText(semanticObject, axis);
+  return {
+    skills_vector: JSON.stringify({
+      skills: axes.skills ?? {},
+      domain: axes.domain ?? {},
+    }),
+    role_vector: JSON.stringify({
+      identity: axes.identity ?? {},
+      preferred_work_mode: metadata.preferred_work_mode,
+      location: metadata.location,
+      country: metadata.country,
+    }),
+    experience_vector: JSON.stringify({
+      experience_summary: axes.experience_summary ?? {},
+      experience_chunks: axes.experience_chunks ?? [],
+      years_of_experience: metadata.years_of_experience,
+    }),
+    impact_vector: JSON.stringify({
+      execution_style: axes.execution_style ?? {},
+      trust_signals: axes.trust_signals ?? {},
+      open_to_work: metadata.open_to_work,
+      notice_period_days: metadata.notice_period_days,
+    }),
+    education_vector: JSON.stringify({
+      education: axes.education ?? {},
+      certifications: axes.certifications ?? [],
+      missing_domains: axes.domain?.missing_domains ?? [],
+    }),
+  };
+}
 
-    axisRecords.push({
-      id: `${semanticObject.candidate_id}:${axis}`,
-      candidate_id: semanticObject.candidate_id,
-      axis,
-      text,
-      embedding_model: modelName,
-      embedding_dimension: dimension,
-      embedding: await embedText(text, dimension),
-      metadata: semanticObject.metadata,
-      source_batch_no: batchNo,
-    });
+function candidateMetadata(semanticObject) {
+  const metadata = semanticObject.metadata ?? {};
+
+  return {
+    yoe: metadata.years_of_experience ?? metadata.yoe ?? null,
+    location: metadata.location ?? "",
+    salary_min: metadata.salary_range_lpa?.min ?? metadata.salary_min ?? null,
+    salary_max: metadata.salary_range_lpa?.max ?? metadata.salary_max ?? null,
+  };
+}
+
+async function buildCandidateVectorRecord(semanticObject, { dimension, batchNo }) {
+  const modelName = embeddingModelName(dimension);
+  const texts = vectorTexts(semanticObject);
+  const vectors = {};
+
+  for (const vectorName of vectorNames) {
+    vectors[vectorName] = await embedText(texts[vectorName], dimension);
   }
 
-  return [
-    {
-      id: `${semanticObject.candidate_id}:full`,
-      candidate_id: semanticObject.candidate_id,
-      axis: "full",
-      text: fullText,
-      embedding_model: modelName,
-      embedding_dimension: dimension,
-      embedding: await embedText(fullText, dimension),
-      metadata: semanticObject.metadata,
-      source_batch_no: batchNo,
-    },
-    ...axisRecords,
-  ];
+  return {
+    id: semanticObject.candidate_id,
+    candidate_id: semanticObject.candidate_id,
+    metadata: candidateMetadata(semanticObject),
+    vectors,
+    vector_texts: texts,
+    embedding_model: modelName,
+    embedding_dimension: dimension,
+    source_batch_no: batchNo,
+  };
+}
+
+async function buildVectorRecords(semanticObject, options) {
+  return [await buildCandidateVectorRecord(semanticObject, options)];
 }
 
 function vectorRecordToQdrantPoint(record) {
   return {
-    id: qdrantPointId(record.id),
-    vector: record.embedding,
+    id: qdrantPointId(record.candidate_id),
+    vector: record.vectors,
     payload: {
-      record_id: record.id,
       candidate_id: record.candidate_id,
-      axis: record.axis,
-      text: record.text,
+      metadata: record.metadata,
       embedding_model: record.embedding_model,
       embedding_dimension: record.embedding_dimension,
-      metadata: record.metadata,
       source_batch_no: record.source_batch_no,
     },
   };
@@ -413,7 +455,11 @@ async function ensureQdrantCollection({ qdrantUrl, collectionName, dimension }) 
 
   if (existing.ok) {
     const body = await existing.json();
-    const existingSize = body.result?.config?.params?.vectors?.size;
+    const existingVectors = body.result?.config?.params?.vectors;
+    const existingSize =
+      typeof existingVectors?.size === "number"
+        ? existingVectors.size
+        : existingVectors?.skills_vector?.size;
 
     if (existingSize && existingSize !== dimension) {
       throw new Error(
@@ -427,10 +473,15 @@ async function ensureQdrantCollection({ qdrantUrl, collectionName, dimension }) 
   await qdrantRequest(qdrantUrl, `/collections/${collectionName}`, {
     method: "PUT",
     body: {
-      vectors: {
-        size: dimension,
-        distance: "Cosine",
-      },
+      vectors: Object.fromEntries(
+        vectorNames.map((vectorName) => [
+          vectorName,
+          {
+            size: dimension,
+            distance: "Cosine",
+          },
+        ])
+      ),
     },
   });
 }
@@ -495,7 +546,7 @@ async function convertJsonlFile(
     `${vectorDbDir}/config.json`,
     `${JSON.stringify(
       {
-        embedding_model: embeddingModelName(),
+        embedding_model: embeddingModelName(embeddingDimension),
         embedding_dimension: embeddingDimension,
         distance: "cosine",
         qdrant: useQdrant
@@ -505,12 +556,16 @@ async function convertJsonlFile(
             }
           : undefined,
         record_shape: {
-          id: "candidate_id:axis",
+          id: "candidate_id",
           candidate_id: "string",
-          axis: "full|identity|skills|experience_summary|experience_chunks|domain|execution_style|trust_signals",
-          text: "semantic text used for embedding",
-          embedding: "normalized numeric vector",
-          metadata: "candidate metadata",
+          metadata: {
+            yoe: "number|null",
+            location: "string",
+            salary_min: "number|null",
+            salary_max: "number|null",
+          },
+          vectors: "skills_vector|role_vector|experience_vector|impact_vector|education_vector",
+          vector_texts: "source text used for each named vector",
         },
       },
       null,
@@ -548,19 +603,24 @@ async function convertJsonlFile(
       });
     }
 
-    vectorCount += vectorRecords.length;
+    vectorCount += vectorRecords.length * vectorNames.length;
 
     manifest.push({
       batch_no: currentBatchNo,
       file,
       count: currentBatch.length,
       vector_file: vectorFile,
-      vector_count: vectorRecords.length,
+      vector_count: vectorRecords.length * vectorNames.length,
+      point_count: vectorRecords.length,
       first_candidate_id: currentBatch[0]?.candidate_id,
       last_candidate_id: currentBatch.at(-1)?.candidate_id,
     });
 
-    console.log(`Wrote ${file} (${currentBatch.length} objects, ${vectorRecords.length} vectors)`);
+    console.log(
+      `Wrote ${file} (${currentBatch.length} objects, ${vectorRecords.length} candidate points, ${
+        vectorRecords.length * vectorNames.length
+      } named vectors)`
+    );
     currentBatchNo += 1;
     currentBatch = [];
   }
@@ -643,7 +703,7 @@ async function main() {
     const embeddingDimension = parsePositiveInt(process.env.EMBEDDING_DIM, 1024);
     const useQdrant = process.env.USE_QDRANT !== "false";
     const qdrantUrl = process.env.QDRANT_URL || "http://localhost:6333";
-    const qdrantCollection = process.env.QDRANT_COLLECTION || "candidate_embeddings_bge_m3";
+    const qdrantCollection = process.env.QDRANT_COLLECTION || "candidate_multivectors_bge_m3";
 
     console.log("Starting semantic object generation...\n");
     console.log("Provider: groq");
@@ -656,7 +716,7 @@ async function main() {
     console.log(`Output dir: ${outputDir}`);
     console.log(`Vector DB dir: ${vectorDbDir}`);
     console.log(`Embedding provider: ${embeddingProvider}`);
-    console.log(`Embedding model: ${embeddingModelName()}`);
+    console.log(`Embedding model: ${embeddingModelName(embeddingDimension)}`);
     console.log(`Embedding dimension: ${embeddingDimension}`);
     console.log(`Qdrant enabled: ${useQdrant ? "Yes" : "No"}`);
     if (useQdrant) {
@@ -701,9 +761,11 @@ export {
   convertBatch,
   convertJsonlFile,
   buildVectorRecords,
+  buildCandidateVectorRecord,
   embedText,
   embeddingModelName,
   ensureQdrantCollection,
+  vectorNames,
   qdrantPointId,
   upsertQdrantVectors,
   vectorRecordToQdrantPoint,

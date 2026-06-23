@@ -3,6 +3,9 @@
 candidates.jsonl
 output.json
 output*.json
+one_object_embeddings.json
+final_candidate_index.json
+final_index/
 node_modules/
 batches/
 batch*/

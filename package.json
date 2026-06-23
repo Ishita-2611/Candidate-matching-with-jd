@@ -6,6 +6,7 @@
   "scripts": {
     "qdrant:up": "docker compose up -d qdrant",
     "qdrant:down": "docker compose down",
+    "build:final-index": "node --max-old-space-size=4096 build-final-index.js",
     "embed:output": "node --max-old-space-size=4096 embed-output.js",
     "process": "node --max-old-space-size=4096 index.js",
     "start": "node --max-old-space-size=4096 index.js",

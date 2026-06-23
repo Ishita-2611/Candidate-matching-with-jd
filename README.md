@@ -5,7 +5,7 @@ This project converts candidate JSONL records into compact semantic candidate ob
 ## What Gets Stored
 
 - Semantic JSON batches are written to `batches/`.
-- BGE-M3 vectors are stored in Qdrant collection `candidate_embeddings_bge_m3`.
+- BGE-M3 vectors are stored in Qdrant collection `candidate_multivectors_bge_m3`.
 - Optional local vector snapshots are written to `vector_db/`.
 
 The folders `batches/`, `vector_db/`, `qdrant_storage/`, and `model_cache/` are generated runtime data and are intentionally ignored by Git.
@@ -64,6 +64,27 @@ The flow is:
 candidates.jsonl -> semantic candidate objects -> BGE-M3 embeddings -> Qdrant
 ```
 
+Semantic objects stay in the generated batch files as normal JSON. Embeddings are stored separately as one Qdrant point per candidate with named vectors:
+
+```json
+{
+  "candidate_id": "CAND_0000001",
+  "metadata": {
+    "yoe": 6.9,
+    "location": "Toronto",
+    "salary_min": 18.7,
+    "salary_max": 36.1
+  },
+  "vectors": {
+    "skills_vector": [0.01],
+    "role_vector": [0.01],
+    "experience_vector": [0.01],
+    "impact_vector": [0.01],
+    "education_vector": [0.01]
+  }
+}
+```
+
 ## Embed Existing Semantic Output
 
 If semantic objects already exist in a JSON file, embed them directly:
@@ -76,6 +97,25 @@ On PowerShell:
 
 ```powershell
 $env:INPUT_JSON="batches/output_batch0001.json"; $env:EMBED_LIMIT="100"; npm run embed:output
+```
+
+## Build Final Candidate Index Format
+
+Use this when you want the final object shape with `metadata`, `semantic_docs`, `vectors`, and `trust_features`:
+
+```powershell
+$env:INPUT_JSON="batches/output_batch0001.json"; $env:FINAL_INDEX_LIMIT="1"; npm run build:final-index
+```
+
+This writes `final_candidate_index.json` locally and upserts vectors into separate Qdrant collections:
+
+```text
+candidate_identity
+candidate_skills
+candidate_experience
+candidate_chunks
+candidate_domain
+candidate_execution
 ```
 
 ## Configuration
@@ -92,7 +132,7 @@ Important environment variables:
 - `EMBEDDING_MODEL`: Defaults to `Xenova/bge-m3`.
 - `EMBEDDING_DIM`: Defaults to `1024`.
 - `QDRANT_URL`: Defaults to `http://localhost:6333`.
-- `QDRANT_COLLECTION`: Defaults to `candidate_embeddings_bge_m3`.
+- `QDRANT_COLLECTION`: Defaults to `candidate_multivectors_bge_m3`.
 - `QDRANT_UPSERT_BATCH_SIZE`: Defaults to `4`.
 
 ## Notes

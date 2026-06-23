@@ -16,7 +16,7 @@ const vectorDbDir = process.env.VECTOR_DB_DIR || "vector_db";
 const vectorIndexJsonl = process.env.VECTOR_INDEX_JSONL || `${vectorDbDir}/index.jsonl`;
 const vectorBatchJson = process.env.VECTOR_BATCH_JSON || `${vectorDbDir}/vectors_batch0001.json`;
 const qdrantUrl = process.env.QDRANT_URL || "http://localhost:6333";
-const qdrantCollection = process.env.QDRANT_COLLECTION || "candidate_embeddings_bge_m3";
+const qdrantCollection = process.env.QDRANT_COLLECTION || "candidate_multivectors_bge_m3";
 const embeddingDimension = parsePositiveInt(process.env.EMBEDDING_DIM, 1024);
 const limit = parsePositiveInt(process.env.EMBED_LIMIT, 100);
 const useQdrant = process.env.USE_QDRANT !== "false";
@@ -53,12 +53,13 @@ writeFileSync(
   `${vectorDbDir}/config.json`,
   `${JSON.stringify(
     {
-      embedding_model: embeddingModelName(),
+      embedding_model: embeddingModelName(embeddingDimension),
       embedding_dimension: embeddingDimension,
       distance: "cosine",
       source_file: inputJson,
       source_object_count: semanticObjects.length,
-      vector_count: vectorRecords.length,
+      point_count: vectorRecords.length,
+      vector_count: vectorRecords.reduce((sum, record) => sum + Object.keys(record.vectors ?? {}).length, 0),
       qdrant: useQdrant
         ? {
             url: qdrantUrl,
@@ -84,8 +85,9 @@ console.log(
     {
       input_file: inputJson,
       objects: semanticObjects.length,
-      vectors: vectorRecords.length,
-      embedding_model: embeddingModelName(),
+      candidate_points: vectorRecords.length,
+      vectors: vectorRecords.reduce((sum, record) => sum + Object.keys(record.vectors ?? {}).length, 0),
+      embedding_model: embeddingModelName(embeddingDimension),
       embedding_dimension: embeddingDimension,
       qdrant_collection: useQdrant ? qdrantCollection : null,
     },
