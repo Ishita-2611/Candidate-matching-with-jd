@@ -7,10 +7,12 @@
     "qdrant:up": "docker compose up -d qdrant",
     "qdrant:down": "docker compose down",
     "build:final-index": "node --max-old-space-size=4096 build-final-index.js",
+    "generate:local-batches": "node generate-local-semantic-batches.js",
+    "embed:batches": "node --max-old-space-size=4096 embed-batches-qdrant.js",
     "embed:output": "node --max-old-space-size=4096 embed-output.js",
-    "process": "node --max-old-space-size=4096 index.js",
-    "start": "node --max-old-space-size=4096 index.js",
-    "test": "node --check index.js"
+    "process": "node index.js",
+    "start": "node index.js",
+    "test": "node --check index.js && node --check generate-local-semantic-batches.js && node --check embed-batches-qdrant.js"
   },
   "author": "",
   "license": "ISC",

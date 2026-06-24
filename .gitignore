@@ -7,8 +7,7 @@ one_object_embeddings.json
 final_candidate_index.json
 final_index/
 node_modules/
-batches/
-batch*/
+batches_check/
 vector_db/
 vector_db*/
 qdrant_storage/
