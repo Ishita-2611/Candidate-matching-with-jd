@@ -118,7 +118,10 @@ async function buildPoint(semanticObject, sourceBatch) {
 async function qdrantRequest(path, { method = "GET", body } = {}) {
   const response = await fetch(`${qdrantUrl}${path}`, {
     method,
-    headers: body ? { "content-type": "application/json" } : undefined,
+    headers: {
+      connection: "close",
+      ...(body ? { "content-type": "application/json" } : {}),
+    },
     body: body ? JSON.stringify(body) : undefined,
   });
 
@@ -186,40 +189,77 @@ function batchFiles() {
 
 async function embedBatches() {
   const limit = parsePositiveInt(process.env.EMBED_LIMIT, Number.MAX_SAFE_INTEGER);
+  const startOffset = parsePositiveInt(process.env.EMBED_START_OFFSET, 0);
   const upsertBatchSize = parsePositiveInt(process.env.QDRANT_UPSERT_BATCH_SIZE, 4);
+  const concurrency = parsePositiveInt(process.env.EMBED_CONCURRENCY, 1);
   const files = batchFiles();
+  let seen = 0;
   let processed = 0;
   let points = [];
-
-  await ensureCollection();
+  let collectionReady = false;
+  let pending = [];
 
   console.log(`Embedding model: ${embeddingModel}`);
   console.log(`Qdrant collection: ${qdrantCollection}`);
   console.log(`Named vectors: ${vectorNames.join(", ")}`);
   console.log(`Batch files found: ${files.length}`);
+  console.log(`Start offset: ${startOffset}`);
   console.log(`Limit: ${limit === Number.MAX_SAFE_INTEGER ? "all" : limit}`);
+  console.log(`Embedding concurrency: ${concurrency}`);
+
+  async function flushPending() {
+    if (pending.length === 0) {
+      return;
+    }
+
+    const chunk = pending;
+    pending = [];
+    const builtPoints = await Promise.all(chunk.map(({ semanticObject, file }) => buildPoint(semanticObject, file)));
+    points.push(...builtPoints);
+    processed += builtPoints.length;
+
+    if (points.length >= upsertBatchSize) {
+      if (!collectionReady) {
+        await ensureCollection();
+        collectionReady = true;
+      }
+      await upsertPoints(points);
+      console.log(`Upserted ${processed} candidates`);
+      points = [];
+    }
+  }
 
   for (const file of files) {
     const semanticObjects = JSON.parse(readFileSync(file, "utf8"));
 
     for (const semanticObject of semanticObjects) {
-      if (processed >= limit) {
+      if (processed + pending.length >= limit) {
         break;
       }
 
-      points.push(await buildPoint(semanticObject, file));
-      processed += 1;
+      if (seen < startOffset) {
+        seen += 1;
+        continue;
+      }
 
-      if (points.length >= upsertBatchSize) {
-        await upsertPoints(points);
-        console.log(`Upserted ${processed} candidates`);
-        points = [];
+      pending.push({ semanticObject, file });
+      seen += 1;
+
+      if (pending.length >= concurrency) {
+        await flushPending();
       }
     }
 
-    if (processed >= limit) {
+    if (processed + pending.length >= limit) {
       break;
     }
+  }
+
+  await flushPending();
+
+  if (points.length > 0 && !collectionReady) {
+    await ensureCollection();
+    collectionReady = true;
   }
 
   await upsertPoints(points);
@@ -235,8 +275,10 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
 
 export {
   buildPoint,
+  embedText,
   embedBatches,
   qdrantPointId,
+  qdrantRequest,
   semanticDocuments,
   vectorNames,
 };

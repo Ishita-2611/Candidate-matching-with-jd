@@ -3,6 +3,10 @@
 candidates.jsonl
 output.json
 output*.json
+!batches/output_batch*.json
+!batches/manifest.json
+!batches_teacher_template/output_batch*.json
+!batches_teacher_template/template_manifest.json
 one_object_embeddings.json
 final_candidate_index.json
 final_index/

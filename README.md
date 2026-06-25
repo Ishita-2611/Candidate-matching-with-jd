@@ -9,6 +9,8 @@ candidates.jsonl
   -> semantic batch JSON files in batches/
   -> BGE-M3 named vectors
   -> Qdrant collection candidate_semantic_multivectors_bge_m3
+  -> metadata hard filter
+  -> semantic similarity search
 ```
 
 `index.js` is intentionally the LLM demo file. It shows the Groq/OpenAI-compatible chat call that converts raw candidate JSON into the semantic object format.
@@ -79,6 +81,55 @@ npm run embed:batches
 
 Remove `EMBED_LIMIT` or set it to a large value when you want to process all batch objects. BGE-M3 is local and memory-heavy, so full 1 lakh processing will take a long time.
 
+## Parse A Job Description
+
+Convert a raw JD text file into the same semantic schema used for search:
+
+```powershell
+$env:JD_INPUT_FILE="job_description.md"
+$env:JD_OUTPUT_FILE="jd-semantic.json"
+npm run parse:jd
+```
+
+## Hybrid Search: Hard Filters + Semantic Similarity
+
+Hard constraints are applied before vector search using Qdrant payload filtering. This keeps dense retrieval from ranking candidates who fail non-negotiable requirements.
+
+Example hard constraints:
+
+```text
+metadata.years_of_experience >= 5
+metadata.location == Toronto
+metadata.preferred_work_mode == onsite
+```
+
+Run search against a parsed JD:
+
+```powershell
+$env:JD_SEMANTIC_FILE="jd-semantic.json"
+$env:QDRANT_COLLECTION="candidate_semantic_multivectors_bge_m3"
+$env:SEARCH_VECTOR="default"
+$env:SEARCH_LIMIT="10"
+npm run search:hybrid
+```
+
+You can override hard constraints directly:
+
+```powershell
+$env:MIN_YEARS_EXPERIENCE="5"
+$env:LOCATION="Toronto"
+$env:PREFERRED_WORK_MODE="onsite"
+npm run search:hybrid
+```
+
+The search script also creates Qdrant payload indexes for:
+
+```text
+metadata.years_of_experience
+metadata.location
+metadata.preferred_work_mode
+```
+
 ## Qdrant Shape
 
 Each candidate is stored as one Qdrant point. The payload stays readable, and vectors are stored as Qdrant named vectors so the dashboard shows separate vector rows like the reference screenshot.
@@ -121,5 +172,7 @@ default              length 1024
 - `npm run process`: LLM semantic generation using `index.js`.
 - `npm run generate:local-batches`: no-API semantic batch generation for large runs.
 - `npm run embed:batches`: BGE-M3 multivector embedding storage in Qdrant.
+- `npm run parse:jd`: convert a job description into semantic hiring JSON.
+- `npm run search:hybrid`: apply metadata filters first, then Qdrant semantic search.
 - `npm run qdrant:up`: start local Qdrant with Docker.
 - `npm test`: syntax check `index.js`.

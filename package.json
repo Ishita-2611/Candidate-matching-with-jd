@@ -10,9 +10,11 @@
     "generate:local-batches": "node generate-local-semantic-batches.js",
     "embed:batches": "node --max-old-space-size=4096 embed-batches-qdrant.js",
     "embed:output": "node --max-old-space-size=4096 embed-output.js",
+    "parse:jd": "node jd-parser.js",
+    "search:hybrid": "node --max-old-space-size=4096 search-qdrant.js",
     "process": "node index.js",
     "start": "node index.js",
-    "test": "node --check index.js && node --check generate-local-semantic-batches.js && node --check embed-batches-qdrant.js"
+    "test": "node --check index.js && node --check jd-parser.js && node --check generate-local-semantic-batches.js && node --check embed-batches-qdrant.js && node --check hard-filters.js && node --check search-qdrant.js"
   },
   "author": "",
   "license": "ISC",
