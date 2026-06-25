@@ -1,5 +1,12 @@
 import OpenAI from "openai";
-import { appendFileSync, createReadStream, mkdirSync, writeFileSync } from "node:fs";
+import {
+  appendFileSync,
+  createReadStream,
+  mkdirSync,
+  writeFileSync,
+  readFileSync,
+  existsSync,
+} from "node:fs";
 import { pathToFileURL } from "node:url";
 import readline from "node:readline";
 
@@ -218,21 +225,58 @@ async function convertJsonlFile(
     if (currentBatch.length === 0 || (!force && currentBatch.length < batchSize)) {
       return;
     }
-
+  
     const file = batchFileName(outputDir, currentBatchNo);
-    writeFileSync(file, `${JSON.stringify(currentBatch, null, 2)}\n`);
-
+  
+    let existing = [];
+  
+    if (existsSync(file)) {
+      try {
+        existing = JSON.parse(readFileSync(file, "utf8"));
+      } catch (error) {
+        console.warn(`Could not parse existing batch ${file}. Starting fresh.`);
+        existing = [];
+      }
+    }
+  
+    // Map existing candidates by candidate_id
+    const mergedMap = new Map(
+      existing.map((candidate) => [candidate.candidate_id, candidate])
+    );
+  
+    // Replace existing candidate if present, otherwise add new one
+    for (const candidate of currentBatch) {
+      mergedMap.set(candidate.candidate_id, candidate);
+    }
+  
+    // Convert back to array and sort by candidate_id
+    const merged = [...mergedMap.values()].sort((a, b) => {
+      const aId = Number(a.candidate_id);
+      const bId = Number(b.candidate_id);
+  
+      if (!Number.isNaN(aId) && !Number.isNaN(bId)) {
+        return aId - bId;
+      }
+  
+      return String(a.candidate_id).localeCompare(String(b.candidate_id));
+    });
+  
+    writeFileSync(file, `${JSON.stringify(merged, null, 2)}\n`);
+  
     manifest.push({
       batch_no: currentBatchNo,
       file,
-      count: currentBatch.length,
-      first_candidate_id: currentBatch[0]?.candidate_id,
-      last_candidate_id: currentBatch.at(-1)?.candidate_id,
+      count: merged.length,
+      first_candidate_id: merged[0]?.candidate_id,
+      last_candidate_id: merged.at(-1)?.candidate_id,
     });
-
-    console.log(`Wrote ${file} (${currentBatch.length} semantic objects)`);
-    currentBatchNo += 1;
+  
+    console.log(
+      `Updated ${file} (+${currentBatch.length} processed, total ${merged.length} unique candidates)`
+    );
+  
     currentBatch = [];
+    currentBatchNo += 1;
   }
 
   async function flush() {
@@ -309,7 +353,7 @@ async function main() {
     const limit = parsePositiveInt(process.env.BATCH_LIMIT, 5);
     const startOffset = parsePositiveInt(process.env.START_OFFSET, 0);
     const concurrency = parsePositiveInt(process.env.CONCURRENCY, 1);
-    const batchSize = parsePositiveInt(process.env.OUTPUT_BATCH_SIZE, 5);
+    const batchSize = parsePositiveInt(process.env.OUTPUT_BATCH_SIZE, 1000);
     const outputDir = process.env.OUTPUT_DIR || "batches";
     const manifestJson = process.env.MANIFEST_JSON || `${outputDir}/manifest.json`;
     const errorJsonl = process.env.ERROR_JSONL || `${outputDir}/output.errors.jsonl`;
