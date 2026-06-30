@@ -30,6 +30,52 @@ function stripJsonFences(text) {
     .trim();
 }
 
+function parseFirstJsonObject(text) {
+  const cleaned = stripJsonFences(text);
+
+  try {
+    return JSON.parse(cleaned);
+  } catch {
+    let depth = 0;
+    let start = -1;
+    let inString = false;
+    let escaped = false;
+
+    for (let index = 0; index < cleaned.length; index += 1) {
+      const char = cleaned[index];
+
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (char === "\\") {
+        escaped = true;
+        continue;
+      }
+      if (char === '"') {
+        inString = !inString;
+        continue;
+      }
+      if (inString) {
+        continue;
+      }
+      if (char === "{") {
+        if (depth === 0) {
+          start = index;
+        }
+        depth += 1;
+      } else if (char === "}") {
+        depth -= 1;
+        if (depth === 0 && start >= 0) {
+          return JSON.parse(cleaned.slice(start, index + 1));
+        }
+      }
+    }
+  }
+
+  return JSON.parse(cleaned);
+}
+
 function outputFileName(outputDir, batchNumber) {
   return `${outputDir}/output_batch${String(batchNumber).padStart(4, "0")}.json`;
 }
@@ -40,6 +86,29 @@ function readExistingManifest(outputDir) {
     return [];
   }
   return JSON.parse(readFileSync(manifestFile, "utf8"));
+}
+
+function readExistingCandidateIds(outputDir) {
+  const ids = new Set();
+
+  if (!existsSync(outputDir)) {
+    return ids;
+  }
+
+  for (const file of readExistingManifest(outputDir).map((entry) => entry.file)) {
+    if (!existsSync(file)) {
+      continue;
+    }
+
+    const objects = JSON.parse(readFileSync(file, "utf8"));
+    for (const object of objects) {
+      if (object?.candidate_id) {
+        ids.add(object.candidate_id);
+      }
+    }
+  }
+
+  return ids;
 }
 
 function writeManifest(outputDir, entries) {
@@ -79,7 +148,7 @@ async function semanticFromFineTunedModel(client, model, candidate, retries) {
         messages: messagesForCandidate(candidate),
       });
       const content = completion.choices?.[0]?.message?.content;
-      return validateSemanticObject(candidate, JSON.parse(stripJsonFences(content)));
+      return validateSemanticObject(candidate, parseFirstJsonObject(content));
     } catch (error) {
       lastError = error;
       if (attempt < retries) {
@@ -157,6 +226,7 @@ async function generateSemanticWithFineTunedModel() {
   const outputBatchSize = parsePositiveInt(process.env.FINETUNED_OUTPUT_BATCH_SIZE, 100);
   const concurrency = parsePositiveInt(process.env.FINETUNED_CONCURRENCY, 3);
   const retries = parsePositiveInt(process.env.FINETUNED_RETRIES, 3);
+  const skipExisting = process.env.FINETUNED_SKIP_EXISTING !== "false";
 
   mkdirSync(outputDir, { recursive: true });
   const client = new OpenAI({
@@ -165,12 +235,25 @@ async function generateSemanticWithFineTunedModel() {
   });
   const candidates = await readCandidates({ inputFile, startOffset, limit });
   const manifest = readExistingManifest(outputDir);
+  const existingCandidateIds = skipExisting ? readExistingCandidateIds(outputDir) : new Set();
   let batch = [];
   let batchNumber = manifest.length + 1;
   let processed = 0;
+  let skipped = 0;
 
   for (let index = 0; index < candidates.length; index += concurrency) {
-    const chunk = candidates.slice(index, index + concurrency);
+    const chunk = candidates.slice(index, index + concurrency).filter((candidate) => {
+      if (existingCandidateIds.has(candidate.candidate_id)) {
+        skipped += 1;
+        return false;
+      }
+      return true;
+    });
+
+    if (chunk.length === 0) {
+      continue;
+    }
+
     const results = await mapWithConcurrency(chunk, concurrency, async (candidate) => {
       try {
         return await semanticFromFineTunedModel(client, model, candidate, retries);
@@ -187,6 +270,7 @@ async function generateSemanticWithFineTunedModel() {
       if (!result) {
         continue;
       }
+      existingCandidateIds.add(result.candidate_id);
       batch.push(result);
       processed += 1;
 
@@ -215,6 +299,7 @@ async function generateSemanticWithFineTunedModel() {
     outputDir,
     requested: candidates.length,
     processed,
+    skipped,
     errorsFile: `${outputDir}/output.errors.jsonl`,
   };
 }
