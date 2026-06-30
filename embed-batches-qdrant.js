@@ -65,30 +65,43 @@ function stableJson(value) {
   return JSON.stringify(value ?? {});
 }
 
+function embeddingText(value) {
+  if (typeof value === "string") {
+    return value;
+  }
+
+  return stableJson(value);
+}
+
 function semanticDocuments(semanticObject) {
   const axes = semanticObject.semantic_axes ?? {};
 
   return {
-    identity: stableJson(axes.identity),
-    skills: stableJson(axes.skills),
-    experience_summary: stableJson({
-      summary: axes.experience_summary ?? {},
-      chunks: axes.experience_chunks ?? [],
-    }),
-    domain: stableJson(axes.domain),
-    execution_style: stableJson(axes.execution_style),
-    trust_signals: stableJson(axes.trust_signals),
-    default: [
-      `candidate_id: ${semanticObject.candidate_id}`,
-      `metadata: ${stableJson(semanticObject.metadata)}`,
-      `identity: ${stableJson(axes.identity)}`,
-      `skills: ${stableJson(axes.skills)}`,
-      `experience_summary: ${stableJson(axes.experience_summary)}`,
-      `experience_chunks: ${stableJson(axes.experience_chunks)}`,
-      `domain: ${stableJson(axes.domain)}`,
-      `execution_style: ${stableJson(axes.execution_style)}`,
-      `trust_signals: ${stableJson(axes.trust_signals)}`,
-    ].join("\n"),
+    identity: embeddingText(axes.identity),
+    skills: embeddingText(axes.skills),
+    experience_summary: [
+      embeddingText(axes.experience_summary ?? {}),
+      ...(axes.experience_chunks ?? []).map((chunk) => chunk.description || embeddingText(chunk)),
+    ]
+      .filter(Boolean)
+      .join("\n"),
+    domain: embeddingText(axes.domain),
+    execution_style: embeddingText(axes.execution_style),
+    trust_signals: embeddingText(axes.trust_signals),
+    default:
+      typeof axes.default === "string"
+        ? axes.default
+        : [
+            `candidate_id: ${semanticObject.candidate_id}`,
+            `metadata: ${stableJson(semanticObject.metadata)}`,
+            `identity: ${embeddingText(axes.identity)}`,
+            `skills: ${embeddingText(axes.skills)}`,
+            `experience_summary: ${embeddingText(axes.experience_summary)}`,
+            `experience_chunks: ${(axes.experience_chunks ?? []).map((chunk) => chunk.description || stableJson(chunk)).join(" ")}`,
+            `domain: ${embeddingText(axes.domain)}`,
+            `execution_style: ${embeddingText(axes.execution_style)}`,
+            `trust_signals: ${embeddingText(axes.trust_signals)}`,
+          ].join("\n"),
   };
 }
 

@@ -6,15 +6,19 @@
   "scripts": {
     "qdrant:up": "docker compose up -d qdrant",
     "qdrant:down": "docker compose down",
-    "build:final-index": "node --max-old-space-size=4096 build-final-index.js",
-    "generate:local-batches": "node generate-local-semantic-batches.js",
+    "detect:honeypots": "node detect-honeypots.js",
+    "finetune:prepare": "node prepare-finetune-data.js",
+    "finetune:evaluate": "node evaluate-finetuned-semantic.js",
+    "generate:finetuned": "node generate-semantic-finetuned.js",
+    "generate:local-batches": "node generate-semantic-batches-v3.js",
     "embed:batches": "node --max-old-space-size=4096 embed-batches-qdrant.js",
-    "embed:output": "node --max-old-space-size=4096 embed-output.js",
+    "embed:jd": "node --max-old-space-size=4096 embed-jd.js",
     "parse:jd": "node jd-parser.js",
     "search:hybrid": "node --max-old-space-size=4096 search-qdrant.js",
+    "rag:rank": "node --max-old-space-size=4096 rag-pipeline.js",
     "process": "node index.js",
     "start": "node index.js",
-    "test": "node --check index.js && node --check jd-parser.js && node --check generate-local-semantic-batches.js && node --check embed-batches-qdrant.js && node --check hard-filters.js && node --check search-qdrant.js"
+    "test": "node --check index.js && node --check index-batched.js && node --check jd-parser.js && node --check redrob-signals.js && node --check detect-honeypots.js && node --check prepare-finetune-data.js && node --check evaluate-finetuned-semantic.js && node --check generate-semantic-finetuned.js && node --check generate-semantic-batches-v2.js && node --check generate-semantic-batches-v3.js && node --check embed-batches-qdrant.js && node --check embed-jd.js && node --check hard-filters.js && node --check search-qdrant.js && node --check rerank-candidates.js && node --check rag-pipeline.js"
   },
   "author": "",
   "license": "ISC",

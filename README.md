@@ -1,89 +1,43 @@
-# Candidate Semantic Matching Pipeline
+# Candidate Matching With JD
 
-This project converts candidate profiles into semantic JSON objects, then embeds those semantic objects with BGE-M3 and stores them in Qdrant as named multivectors.
+Pipeline for the India Runs Data & AI / Redrob candidate ranking challenge.
 
-## Flow
+The repo is organized around two phases:
 
 ```text
-candidates.jsonl
-  -> semantic batch JSON files in batches/
-  -> BGE-M3 named vectors
-  -> Qdrant collection candidate_semantic_multivectors_bge_m3
-  -> metadata hard filter
-  -> semantic similarity search
+OFFLINE, run before submission
+candidates.jsonl -> semantic batches -> BGE-M3 embeddings in Qdrant -> RAG analysis / FAISS snapshot + signal cache
+
+ONLINE, submission window
+faiss_index.bin + id_map.json + jd_vector.npy + signals_cache.msgpack -> rank.py -> submission.csv
 ```
 
-`index.js` is intentionally the LLM demo file. It shows the Groq/OpenAI-compatible chat call that converts raw candidate JSON into the semantic object format.
+The online ranking step is CPU-only, no-network, and does not call Qdrant or any LLM API.
 
 ## Setup
 
 ```bash
 npm install
+pip install -r requirements.txt
 ```
 
-Copy `.env.example` to `.env` and set:
+Copy `.env.example` to `.env` and set `GROQ_API_KEY` only for offline LLM preprocessing.
 
-```text
-GROQ_API_KEY=...
-```
-
-Do not commit `.env`, `candidates.jsonl`, model cache, local vector snapshots, or Qdrant storage.
-
-## Generate Semantic Batches With LLM
-
-This is the project demo path in `index.js`:
-
-```powershell
-$env:BATCH_LIMIT="5"
-$env:CONCURRENCY="1"
-$env:OUTPUT_BATCH_SIZE="5"
-npm run process
-```
-
-Output is written to `batches/output_batch0001.json`.
-
-## Generate Semantic Batches Without API Calls
-
-For the full 1 lakh dataset, use the local deterministic generator so API limits do not block the run:
-
-```powershell
-$env:BATCH_LIMIT="100000"
-$env:START_OFFSET="0"
-$env:OUTPUT_BATCH_SIZE="1000"
-$env:OUTPUT_DIR="batches"
-npm run generate:local-batches
-```
-
-The current `batches/` folder is kept available for embeddings and is not ignored by Git.
-
-## Start Qdrant
+Start local Qdrant when embedding/exporting:
 
 ```powershell
 npm run qdrant:up
 ```
 
-Dashboard:
+Qdrant dashboard:
 
 ```text
 http://localhost:6333/dashboard
 ```
 
-## Store BGE-M3 Multivector Embeddings In Qdrant
+## Offline Pipeline
 
-Embed existing semantic batches and upsert them into one Qdrant collection:
-
-```powershell
-$env:BATCHES_DIR="batches"
-$env:EMBED_LIMIT="5"
-$env:QDRANT_COLLECTION="candidate_semantic_multivectors_bge_m3"
-npm run embed:batches
-```
-
-Remove `EMBED_LIMIT` or set it to a large value when you want to process all batch objects. BGE-M3 is local and memory-heavy, so full 1 lakh processing will take a long time.
-
-## Parse A Job Description
-
-Convert a raw JD text file into the same semantic schema used for search:
+### 1. Parse JD
 
 ```powershell
 $env:JD_INPUT_FILE="job_description.md"
@@ -91,88 +45,226 @@ $env:JD_OUTPUT_FILE="jd-semantic.json"
 npm run parse:jd
 ```
 
-## Hybrid Search: Hard Filters + Semantic Similarity
+### 2. Generate Semantic Candidate Batches
 
-Hard constraints are applied before vector search using Qdrant payload filtering. This keeps dense retrieval from ranking candidates who fail non-negotiable requirements.
+`generate-semantic-batches-v3.js` creates natural-language semantic axes. Most axes are local deterministic prose. The `execution_style` axis can use Groq offline with concurrency and cache.
 
-Example hard constraints:
-
-```text
-metadata.years_of_experience >= 5
-metadata.location == Toronto
-metadata.preferred_work_mode == onsite
+```powershell
+$env:INPUT_JSONL="candidates.jsonl"
+$env:OUTPUT_DIR="batches"
+$env:BATCH_LIMIT="100000"
+$env:OUTPUT_BATCH_SIZE="1000"
+$env:CONCURRENCY="50"
+npm run generate:local-batches
 ```
 
-Run search against a parsed JD:
+Local-only fallback:
+
+```powershell
+$env:EXECUTION_STYLE_PROVIDER="local"
+npm run generate:local-batches
+```
+
+The `batches/` folder is kept for embeddings and can be pushed later when ready.
+
+### 2B. Fine-Tune Semantic Generator
+
+If you have LLM-generated semantic examples, export them as chat fine-tuning JSONL:
+
+```powershell
+$env:FINETUNE_CANDIDATES_FILE="candidates.jsonl"
+$env:FINETUNE_SEMANTIC_DIR="batches"
+$env:FINETUNE_LIMIT="1000"
+npm run finetune:prepare
+```
+
+Outputs:
+
+```text
+fine_tuning/semantic_train.jsonl
+fine_tuning/semantic_validation.jsonl
+fine_tuning/manifest.json
+```
+
+Use those files in OpenPipe, Fireworks, or another OpenAI-compatible fine-tuning provider. After the provider deploys a model id, generate semantic batches with:
+
+```powershell
+$env:FINETUNED_API_KEY="..."
+$env:FINETUNED_BASE_URL="https://app.openpipe.ai/api/v1"
+$env:FINETUNED_MODEL="openpipe:cruel-cooks-search"
+$env:FINETUNED_LIMIT="1000"
+npm run generate:finetuned
+```
+
+This writes to `batches_finetuned/` by default. Point `BATCHES_DIR` to that folder before embedding if you want to use fine-tuned semantic text.
+
+### 3. Embed Candidates In Qdrant
+
+```powershell
+$env:BATCHES_DIR="batches"
+$env:QDRANT_COLLECTION="candidate_semantic_multivectors_bge_m3"
+npm run embed:batches
+```
+
+Named vectors:
+
+```text
+identity
+skills
+experience_summary
+domain
+execution_style
+trust_signals
+default
+```
+
+Do not delete `qdrant_storage/` after embeddings if you want local Qdrant data to persist.
+
+### 4. Embed JD
 
 ```powershell
 $env:JD_SEMANTIC_FILE="jd-semantic.json"
-$env:QDRANT_COLLECTION="candidate_semantic_multivectors_bge_m3"
-$env:SEARCH_VECTOR="default"
-$env:SEARCH_LIMIT="10"
-npm run search:hybrid
+$env:JD_EMBEDDINGS_FILE="jd-embeddings.json"
+npm run embed:jd
 ```
 
-You can override hard constraints directly:
+### 5. Precompute Redrob/Honeypot Signals
 
 ```powershell
-$env:MIN_YEARS_EXPERIENCE="5"
-$env:LOCATION="Toronto"
-$env:PREFERRED_WORK_MODE="onsite"
+python precompute_signals.py --candidates candidates.jsonl --out signals_cache.msgpack
+```
+
+This produces behavioral scores, profile scores, honeypot/impossible-profile penalties, and deterministic reasoning.
+
+Optional honeypot inspection:
+
+```powershell
+npm run detect:honeypots
+```
+
+### 6. Run Local RAG Analysis
+
+The RAG path uses the Qdrant multivector collection as the retriever, applies hard filters and Redrob/honeypot penalties, then writes grounded candidate explanations.
+
+```powershell
+$env:JD_EMBEDDINGS_FILE="jd-embeddings.json"
+$env:RAG_LIMIT="100"
+$env:RAG_RECALL_LIMIT="500"
+$env:RERANKER_MODEL="Xenova/ms-marco-MiniLM-L-6-v2"
+$env:RAG_EXPLANATION_PROVIDER="local"
+npm run rag:rank
+```
+
+Outputs:
+
+```text
+rag-results.json
+rag-submission.csv
+```
+
+For offline-only LLM explanations on the top candidates:
+
+```powershell
+$env:RAG_EXPLANATION_PROVIDER="groq"
+$env:RAG_EXPLAIN_LIMIT="100"
+$env:RAG_EXPLANATION_CONCURRENCY="3"
+npm run rag:rank
+```
+
+Do not use the LLM explanation mode inside the final no-network ranking run.
+
+Ranking stages:
+
+```text
+1. Hard metadata filter from the semantic JD
+2. BGE-M3 multivector retrieval in Qdrant
+3. Cross-encoder reranking with RERANKER_MODEL
+4. Skill overlap + Redrob business/profile signals
+5. Disqualifier and honeypot penalties
+6. Grounded explanation generation
+```
+
+Default reranker:
+
+```text
+Xenova/ms-marco-MiniLM-L-6-v2
+```
+
+The reranker reads the JD and each retrieved candidate together, so it is a real pairwise ranking model rather than just vector similarity.
+
+### 7. Export FAISS Snapshot
+
+```powershell
+python export_faiss_snapshot.py --jd-embeddings jd-embeddings.json
+```
+
+Outputs:
+
+```text
+faiss_index.bin
+id_map.json
+jd_vector.npy
+```
+
+## Online Submission Command
+
+```powershell
+python rank.py --candidates candidates.jsonl --out submission.csv
+```
+
+`rank.py` loads:
+
+```text
+faiss_index.bin
+id_map.json
+signals_cache.msgpack
+jd_vector.npy
+```
+
+It writes exactly:
+
+```text
+candidate_id,rank,score,reasoning
+```
+
+No network, no Qdrant, no LLM calls.
+
+## Useful Commands
+
+```powershell
+npm test
+npm run parse:jd
+npm run finetune:prepare
+npm run generate:finetuned
+npm run generate:local-batches
+npm run embed:batches
+npm run embed:jd
 npm run search:hybrid
+npm run rag:rank
+npm run detect:honeypots
+python precompute_signals.py --candidates candidates.jsonl --out signals_cache.msgpack
+python export_faiss_snapshot.py --jd-embeddings jd-embeddings.json
+python rank.py --candidates candidates.jsonl --out submission.csv
 ```
 
-The search script also creates Qdrant payload indexes for:
+## Generated Files
+
+Ignored by default unless intentionally force-added:
 
 ```text
-metadata.years_of_experience
-metadata.location
-metadata.preferred_work_mode
+.env
+candidates.jsonl
+jd-semantic.json
+jd-embeddings.json
+qdrant_storage/
+model_cache/
+execution_style_cache/
+faiss_index.bin
+id_map.json
+jd_vector.npy
+signals_cache.msgpack
+rag-results.json
+rag-submission.csv
+submission.csv
+honeypot_candidates.json
 ```
-
-## Qdrant Shape
-
-Each candidate is stored as one Qdrant point. The payload stays readable, and vectors are stored as Qdrant named vectors so the dashboard shows separate vector rows like the reference screenshot.
-
-Payload example:
-
-```json
-{
-  "candidate_id": "CAND_0000001",
-  "metadata": {
-    "years_of_experience": 6.9,
-    "location": "Toronto",
-    "country": "Canada",
-    "open_to_work": true,
-    "preferred_work_mode": "onsite",
-    "notice_period_days": 60,
-    "salary_range_lpa": {
-      "min": 18.7,
-      "max": 36.1
-    }
-  },
-  "semantic_axes": {}
-}
-```
-
-Named vectors stored on the same point:
-
-```text
-identity             length 1024
-skills               length 1024
-experience_summary   length 1024
-domain               length 1024
-execution_style      length 1024
-trust_signals        length 1024
-default              length 1024
-```
-
-## Useful Scripts
-
-- `npm run process`: LLM semantic generation using `index.js`.
-- `npm run generate:local-batches`: no-API semantic batch generation for large runs.
-- `npm run embed:batches`: BGE-M3 multivector embedding storage in Qdrant.
-- `npm run parse:jd`: convert a job description into semantic hiring JSON.
-- `npm run search:hybrid`: apply metadata filters first, then Qdrant semantic search.
-- `npm run qdrant:up`: start local Qdrant with Docker.
-- `npm test`: syntax check `index.js`.
