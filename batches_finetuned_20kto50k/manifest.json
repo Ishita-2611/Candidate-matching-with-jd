@@ -1268,5 +1268,235 @@
     "file": "batches_finetuned/output_batch0254.json",
     "count": 100,
     "last_candidate_id": "CAND_0045466"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0255.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0045567"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0256.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0045667"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0257.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0045767"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0258.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0045867"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0259.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0045967"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0260.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046067"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0261.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046167"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0262.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046267"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0263.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046367"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0264.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046467"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0265.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046567"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0266.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046667"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0267.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046767"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0268.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046867"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0269.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0046967"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0270.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047067"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0271.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047168"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0272.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047268"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0273.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047368"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0274.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047468"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0275.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047569"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0276.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047669"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0277.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047769"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0278.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047869"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0279.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0047969"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0280.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048069"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0281.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048169"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0282.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048269"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0283.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048369"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0284.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048469"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0285.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048569"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0286.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048669"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0287.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048769"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0288.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048869"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0289.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0048969"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0290.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049069"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0291.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049169"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0292.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049269"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0293.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049369"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0294.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049469"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0295.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049569"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0296.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049670"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0297.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049770"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0298.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049870"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0299.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0049970"
+  },
+  {
+    "file": "batches_finetuned_20kto50k/output_batch0300.json",
+    "count": 30,
+    "last_candidate_id": "CAND_0050000"
   }
 ]
