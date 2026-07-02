@@ -1,0 +1,502 @@
+[
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0001.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0090100"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0002.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0090200"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0003.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0090300"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0004.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0090400"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0005.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0090500"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0006.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0090600"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0007.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0090700"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0008.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0090800"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0009.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0090900"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0010.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091000"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0011.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091101"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0012.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091201"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0013.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091303"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0014.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091403"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0015.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091503"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0016.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091603"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0017.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091703"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0018.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091803"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0019.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0091903"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0020.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092003"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0021.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092104"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0022.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092204"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0023.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092304"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0024.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092404"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0025.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092504"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0026.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092604"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0027.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092705"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0028.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092805"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0029.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0092905"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0030.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093005"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0031.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093105"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0032.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093205"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0033.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093305"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0034.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093405"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0035.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093505"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0036.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093605"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0037.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093706"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0038.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093807"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0039.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0093911"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0040.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094011"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0041.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094111"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0042.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094211"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0043.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094311"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0044.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094411"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0045.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094511"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0046.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094611"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0047.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094711"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0048.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094811"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0049.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0094911"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0050.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095011"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0051.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095111"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0052.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095211"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0053.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095311"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0054.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095411"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0055.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095511"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0056.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095613"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0057.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095714"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0058.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095815"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0059.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0095915"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0060.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096018"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0061.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096128"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0062.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096231"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0063.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096331"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0064.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096431"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0065.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096531"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0066.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096631"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0067.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096731"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0068.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096831"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0069.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0096931"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0070.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097031"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0071.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097131"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0072.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097231"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0073.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097331"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0074.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097431"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0075.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097531"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0076.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097631"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0077.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097731"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0078.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097831"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0079.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0097931"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0080.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098031"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0081.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098131"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0082.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098231"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0083.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098331"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0084.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098431"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0085.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098531"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0086.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098631"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0087.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098731"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0088.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098831"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0089.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0098931"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0090.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099032"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0091.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099132"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0092.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099232"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0093.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099332"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0094.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099432"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0095.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099532"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0096.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099632"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0097.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099732"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0098.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099832"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0099.json",
+    "count": 100,
+    "last_candidate_id": "CAND_0099932"
+  },
+  {
+    "file": "batches_finetuned_90kto100k/output_batch0100.json",
+    "count": 68,
+    "last_candidate_id": "CAND_0100000"
+  }
+]
