@@ -1,5 +1,605 @@
 [
     {
+        "candidate_id":  "CAND_0077501",
+        "metadata":  {
+                         "years_of_experience":  11.4,
+                         "location":  "Singapore",
+                         "country":  "Singapore",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "flexible",
+                         "notice_period_days":  90,
+                         "salary_range_lpa":  {
+                                                  "min":  9.5,
+                                                  "max":  20.3
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Sales Executive",
+                                               "secondary_roles":  [
+                                                                       "Sales Executive",
+                                                                       "HR Manager",
+                                                                       "Graphic Designer"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Software",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+
+                                                                        ],
+                                             "ml_skills":  [
+
+                                                           ],
+                                             "ml_infra_skills":  [
+
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Vue.js",
+                                                                 "Agile",
+                                                                 "Docker"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Led customer support team at Initech, managed team of 8 support agents, owned escalation process, and built support knowledge base.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management",
+                                                                         "Software"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Led customer support team at Stark Industries, managed team of 8 support agents, owned escalation process, and built support knowledge base.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management",
+                                                                         "Manufacturing"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_3",
+                                                            "description":  "Business analyst at a consulting firm, working primarily with retail and CPG clients. Conducted business diagnostics, process re-engineering work, and digital transformation strategy projects.",
+                                                            "tags":  [
+                                                                         "business analysis",
+                                                                         "consulting"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_4",
+                                                            "description":  "Business analyst at a consulting firm, working primarily with retail and CPG clients. Conducted business diagnostics, process re-engineering work, and digital transformation strategy projects.",
+                                                            "tags":  [
+                                                                         "business analysis",
+                                                                         "consulting"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Software",
+                                                                     "Manufacturing",
+                                                                     "IT Services"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  47.7,
+                                                    "recruiter_response_rate":  0.62,
+                                                    "interview_completion_rate":  0.63,
+                                                    "offer_acceptance_rate":  -1
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0077502",
+        "metadata":  {
+                         "years_of_experience":  7.5,
+                         "location":  "Coimbatore, Tamil Nadu",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "remote",
+                         "notice_period_days":  120,
+                         "salary_range_lpa":  {
+                                                  "min":  19.4,
+                                                  "max":  34.9
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Software Engineer",
+                                               "secondary_roles":  [
+                                                                       "Software Engineer",
+                                                                       "Backend Engineer",
+                                                                       "Analytics Engineer"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "IT Services",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "MLflow",
+                                                               "QLoRA"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "MLflow"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Salesforce CRM",
+                                                                 "PowerPoint"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "Figma",
+                                                                               "CSS"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Streaming Systems",
+                                                                              "Batch Processing",
+                                                                              "Analytics Pipelines",
+                                                                              "Feature Engineering Pipelines",
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  true
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "moderate-low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Designed and maintained the analytical data warehouse on Snowflake supporting the BI team\u0027s ~50 dashboards at Infosys.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "customer support"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Mixed data science and analytics-engineering role at a marketing-analytics startup at CRED.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "customer support"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_3",
+                                                            "description":  "Implemented streaming data pipelines on Kafka and Spark Streaming for a real-time user-activity processing platform at Cognizant.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "real-time processing"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "IT Services",
+                                                                     "Fintech"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Streaming Systems",
+                                                                       "Batch Processing",
+                                                                       "Analytics Pipelines",
+                                                                       "Feature Engineering Pipelines",
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "high"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  63,
+                                                    "profile_completeness":  44.2,
+                                                    "recruiter_response_rate":  0.49,
+                                                    "interview_completion_rate":  0.75,
+                                                    "offer_acceptance_rate":  -1
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0077503",
+        "metadata":  {
+                         "years_of_experience":  5.5,
+                         "location":  "Hyderabad, Telangana",
+                         "country":  "India",
+                         "open_to_work":  true,
+                         "preferred_work_mode":  "hybrid",
+                         "notice_period_days":  90,
+                         "salary_range_lpa":  {
+                                                  "min":  9.3,
+                                                  "max":  15.2
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Content Writer",
+                                               "secondary_roles":  [
+                                                                       "Content Writer",
+                                                                       "Civil Engineer",
+                                                                       "Business Analyst"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Manufacturing",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Snowflake",
+                                                                            "Flask",
+                                                                            "Pinecone"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "Fine-tuning LLMs",
+                                                               "LLMs"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "Vector Search"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Snowflake",
+                                                                 "Apache Flink"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Analytics Pipelines"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "moderate-low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Enterprise sales of cloud software solutions into the mid-market segment at Globex Inc.",
+                                                            "tags":  [
+                                                                         "customer support",
+                                                                         "marketing"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Marketing leadership role at a B2B SaaS company at Globex Inc.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_3",
+                                                            "description":  "Operations management role at a logistics company at Dunder Mifflin.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "process management"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Manufacturing",
+                                                                     "Paper Products"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Analytics Pipelines"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  53.5,
+                                                    "recruiter_response_rate":  0.69,
+                                                    "interview_completion_rate":  0.44,
+                                                    "offer_acceptance_rate":  0.55
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0077504",
+        "metadata":  {
+                         "years_of_experience":  4.6,
+                         "location":  "Trivandrum, Kerala",
+                         "country":  "India",
+                         "open_to_work":  true,
+                         "preferred_work_mode":  "remote",
+                         "notice_period_days":  120,
+                         "salary_range_lpa":  {
+                                                  "min":  17.9,
+                                                  "max":  39
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Data Scientist",
+                                               "secondary_roles":  [
+                                                                       "Data Scientist",
+                                                                       "AI Research Engineer",
+                                                                       "Computer Vision Engineer"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "IT Services",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Python"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "QLoRA",
+                                                               "Speech Recognition",
+                                                               "MLOps",
+                                                               "BentoML",
+                                                               "LoRA"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "Vector Search",
+                                                                     "Pinecone",
+                                                                     "BentoML",
+                                                                     "Embeddings"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Spring Boot"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "Figma"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Analytics Pipelines",
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "moderate",
+                                                         "ml_maturity":  "moderate-low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Worked on time-series forecasting models for supply-chain demand prediction at a logistics company at Infosys.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "AI"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Worked on customer-facing predictive modeling for an e-commerce platform — churn prediction, conversion likelihood, lifetime value estimation at Saarthi.ai.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "AI"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_3",
+                                                            "description":  "Worked on customer-facing predictive modeling for an e-commerce platform — churn prediction, conversion likelihood, lifetime value estimation at Yellow.ai.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "AI"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "IT Services",
+                                                                     "Voice AI",
+                                                                     "AI/ML"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Analytics Pipelines",
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "medium",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  64.8,
+                                                    "recruiter_response_rate":  0.65,
+                                                    "interview_completion_rate":  0.52,
+                                                    "offer_acceptance_rate":  0.25
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0077505",
+        "metadata":  {
+                         "years_of_experience":  3.8,
+                         "location":  "Noida, Uttar Pradesh",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "hybrid",
+                         "notice_period_days":  90,
+                         "salary_range_lpa":  {
+                                                  "min":  14.9,
+                                                  "max":  28.7
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Data Engineer",
+                                               "secondary_roles":  [
+                                                                       "Data Engineer",
+                                                                       "Senior Data Engineer"
+                                                                   ],
+                                               "seniority":  "mid-level",
+                                               "career_transition":  {
+                                                                         "from":  "Manufacturing",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Apache Beam",
+                                                                            "dbt"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "LLMs"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "Weights \u0026 Biases"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "dbt",
+                                                                 "Illustrator",
+                                                                 "Tailwind",
+                                                                 "ETL"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "Tailwind",
+                                                                               "Photoshop"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Batch Processing",
+                                                                              "Analytics Pipelines",
+                                                                              "Feature Engineering Pipelines",
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "~500GB",
+                                                                       "source_systems":  12,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Built and maintained data pipelines on Apache Airflow processing ~500GB of daily transactional data across 12 source systems at Acme Corp.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "batch processing"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Designed and maintained the analytical data warehouse on Snowflake supporting the BI team\u0027s ~50 dashboards at Capgemini.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "customer support"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Manufacturing",
+                                                                     "IT Services"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Batch Processing",
+                                                                       "Analytics Pipelines",
+                                                                       "Feature Engineering Pipelines",
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "low",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "high"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  60.9,
+                                                    "recruiter_response_rate":  0.66,
+                                                    "interview_completion_rate":  0.84,
+                                                    "offer_acceptance_rate":  0.45
+                                                }
+                          }
+    },
+    {
         "candidate_id":  "CAND_0077506",
         "metadata":  {
                          "years_of_experience":  6.3,
@@ -10814,526 +11414,6 @@
                                                     "profile_completeness":  34.4,
                                                     "recruiter_response_rate":  0.37,
                                                     "interview_completion_rate":  0.79,
-                                                    "offer_acceptance_rate":  -1
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0077601",
-        "metadata":  {
-                         "years_of_experience":  2.2,
-                         "location":  "Austin",
-                         "country":  "USA",
-                         "open_to_work":  true,
-                         "preferred_work_mode":  "hybrid",
-                         "notice_period_days":  30,
-                         "salary_range_lpa":  {
-                                                  "min":  6.5,
-                                                  "max":  10.1
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Business Analyst",
-                                               "secondary_roles":  [
-                                                                       "Business Analyst"
-                                                                   ],
-                                               "seniority":  "mid-level",
-                                               "career_transition":  {
-                                                                         "from":  "IT Services",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-
-                                                                        ],
-                                             "ml_skills":  [
-
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "gRPC"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Backend Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Marketing leadership role at a B2B SaaS company at Wipro.",
-                                                            "tags":  [
-                                                                         "team management",
-                                                                         "process management"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "IT Services"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Backend Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "low",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  76.2,
-                                                    "recruiter_response_rate":  0.13,
-                                                    "interview_completion_rate":  0.8,
-                                                    "offer_acceptance_rate":  -1
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0077602",
-        "metadata":  {
-                         "years_of_experience":  5.2,
-                         "location":  "Toronto",
-                         "country":  "Canada",
-                         "open_to_work":  true,
-                         "preferred_work_mode":  "flexible",
-                         "notice_period_days":  90,
-                         "salary_range_lpa":  {
-                                                  "min":  13.8,
-                                                  "max":  14.2
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Software Engineer",
-                                               "secondary_roles":  [
-                                                                       "Software Engineer",
-                                                                       "Cloud Engineer"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "Conglomerate",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "Spark"
-                                                                        ],
-                                             "ml_skills":  [
-
-                                                           ],
-                                             "ml_infra_skills":  [
-                                                                     "Embeddings"
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Spark",
-                                                                 "SEO",
-                                                                 "Sales"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-                                                                               "Photoshop"
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Streaming Systems",
-                                                                              "Backend Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  true
-                                                                   },
-                                                         "production_maturity":  "moderate",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Java backend development at a large enterprise — Spring Boot microservices, Kafka for inter-service messaging, Postgres + Redis for storage at Wayne Enterprises.",
-                                                            "tags":  [
-                                                                         "real-time processing"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Frontend engineering at a media company at Wipro.",
-                                                            "tags":  [
-                                                                         "engineering design"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Conglomerate",
-                                                                     "IT Services"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Streaming Systems",
-                                                                       "Backend Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "low",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "medium",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  83.1,
-                                                    "recruiter_response_rate":  0.19,
-                                                    "interview_completion_rate":  0.83,
-                                                    "offer_acceptance_rate":  0.31
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0077603",
-        "metadata":  {
-                         "years_of_experience":  14.2,
-                         "location":  "Indore, Madhya Pradesh",
-                         "country":  "India",
-                         "open_to_work":  false,
-                         "preferred_work_mode":  "flexible",
-                         "notice_period_days":  30,
-                         "salary_range_lpa":  {
-                                                  "min":  6.5,
-                                                  "max":  12.2
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Sales Executive",
-                                               "secondary_roles":  [
-                                                                       "Graphic Designer",
-                                                                       "Sales Executive",
-                                                                       "Marketing Manager"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "Software",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "Flask"
-                                                                        ],
-                                             "ml_skills":  [
-                                                               "LLMs"
-                                                           ],
-                                             "ml_infra_skills":  [
-                                                                     "Vector Search"
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "REST APIs",
-                                                                 "MongoDB",
-                                                                 "Hadoop",
-                                                                 "Docker",
-                                                                 "gRPC"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Analytics Pipelines"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Operations management role at a logistics company at Pied Piper.",
-                                                            "tags":  [
-                                                                         "data engineering",
-                                                                         "process management"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Business analyst at a consulting firm, working primarily with retail and CPG clients. Conducted business diagnostics, process re-engineering work, and digital transformation strategy projects.",
-                                                            "tags":  [
-                                                                         "business analysis",
-                                                                         "consulting"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_3",
-                                                            "description":  "Marketing leadership role at a B2B SaaS company at Initech.",
-                                                            "tags":  [
-                                                                         "team management",
-                                                                         "process management"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Software",
-                                                                     "Manufacturing"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Analytics Pipelines"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  47.4,
-                                                    "recruiter_response_rate":  0.43,
-                                                    "interview_completion_rate":  0.66,
-                                                    "offer_acceptance_rate":  0.73
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0077604",
-        "metadata":  {
-                         "years_of_experience":  4.2,
-                         "location":  "Jaipur, Rajasthan",
-                         "country":  "India",
-                         "open_to_work":  true,
-                         "preferred_work_mode":  "hybrid",
-                         "notice_period_days":  90,
-                         "salary_range_lpa":  {
-                                                  "min":  12.5,
-                                                  "max":  28.9
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Frontend Engineer",
-                                               "secondary_roles":  [
-                                                                       "Frontend Engineer"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "IT Services",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "Snowflake"
-                                                                        ],
-                                             "ml_skills":  [
-                                                               "HTML",
-                                                               "LLMs"
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Six Sigma",
-                                                                 "MongoDB",
-                                                                 "Snowflake",
-                                                                 "Webpack",
-                                                                 "HTML",
-                                                                 "ETL"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-                                                                               "HTML"
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Backend Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "moderate",
-                                                         "ml_maturity":  "moderate-low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Frontend engineering at a media company at Capgemini.",
-                                                            "tags":  [
-                                                                         "engineering design"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "IT Services"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Backend Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "low",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "medium",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  31.9,
-                                                    "recruiter_response_rate":  0.43,
-                                                    "interview_completion_rate":  0.73,
-                                                    "offer_acceptance_rate":  -1
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0077605",
-        "metadata":  {
-                         "years_of_experience":  7.7,
-                         "location":  "Kolkata, West Bengal",
-                         "country":  "India",
-                         "open_to_work":  false,
-                         "preferred_work_mode":  "remote",
-                         "notice_period_days":  150,
-                         "salary_range_lpa":  {
-                                                  "min":  5.3,
-                                                  "max":  27.2
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Customer Support",
-                                               "secondary_roles":  [
-                                                                       "Customer Support",
-                                                                       "Graphic Designer"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "IT Services",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "Kafka"
-                                                                        ],
-                                             "ml_skills":  [
-
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Salesforce CRM",
-                                                                 "FastAPI",
-                                                                 "Java",
-                                                                 "CSS",
-                                                                 "Django",
-                                                                 "Azure"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-                                                                               "CSS"
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Backend Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Marketing leadership role at a B2B SaaS company at TCS.",
-                                                            "tags":  [
-                                                                         "customer support",
-                                                                         "team management"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Marketing leadership role at a B2B SaaS company at Acme Corp.",
-                                                            "tags":  [
-                                                                         "team management",
-                                                                         "process management"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "IT Services",
-                                                                     "Manufacturing"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Backend Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  26.1,
-                                                    "recruiter_response_rate":  0.53,
-                                                    "interview_completion_rate":  0.57,
                                                     "offer_acceptance_rate":  -1
                                                 }
                           }

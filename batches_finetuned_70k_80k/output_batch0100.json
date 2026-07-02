@@ -1,5 +1,703 @@
 [
     {
+        "candidate_id":  "CAND_0079901",
+        "metadata":  {
+                         "years_of_experience":  7.1,
+                         "location":  "Kolkata, West Bengal",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "hybrid",
+                         "notice_period_days":  90,
+                         "salary_range_lpa":  {
+                                                  "min":  7.1,
+                                                  "max":  13
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Customer Support",
+                                               "secondary_roles":  [
+                                                                       "Customer Support",
+                                                                       "Sales Executive"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "IT Services",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Spark",
+                                                                            "PostgreSQL"
+                                                                        ],
+                                             "ml_skills":  [
+
+                                                           ],
+                                             "ml_infra_skills":  [
+
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Six Sigma",
+                                                                 "Spark",
+                                                                 "PostgreSQL"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "CSS"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Marketing manager at Infosys, content writing, SEO strategy, and AI-assisted content production.",
+                                                            "tags":  [
+                                                                         "content creation",
+                                                                         "SEO",
+                                                                         "AI"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Marketing leadership role at a B2B SaaS company at Wipro.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "IT Services"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  36.4,
+                                                    "recruiter_response_rate":  0.06,
+                                                    "interview_completion_rate":  0.78,
+                                                    "offer_acceptance_rate":  0.21
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0079902",
+        "metadata":  {
+                         "years_of_experience":  11.3,
+                         "location":  "Singapore",
+                         "country":  "Singapore",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "flexible",
+                         "notice_period_days":  120,
+                         "salary_range_lpa":  {
+                                                  "min":  7.3,
+                                                  "max":  22.6
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "HR Manager",
+                                               "secondary_roles":  [
+                                                                       "HR Manager",
+                                                                       "Content Writer",
+                                                                       "Graphic Designer"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Paper Products",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "GCP"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "MLflow"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "MLflow"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Next.js",
+                                                                 "GCP",
+                                                                 "Webpack",
+                                                                 "SAP"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Senior accounting role at a mid-sized company — month-end close, financial reporting, statutory compliance (GAAP / Ind-AS), and tax filings at Dunder Mifflin.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Marketing manager at Initech, content writing, SEO strategy, and AI-assisted content production.",
+                                                            "tags":  [
+                                                                         "content creation",
+                                                                         "SEO",
+                                                                         "AI"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_3",
+                                                            "description":  "Led customer support team at Wayne Enterprises, managed team of 8 support agents, owned escalation process, and built support knowledge base.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management",
+                                                                         "Conglomerate"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_4",
+                                                            "description":  "Enterprise sales of cloud software solutions into the mid-market segment at Infosys.",
+                                                            "tags":  [
+                                                                         "customer support",
+                                                                         "AI"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Paper Products",
+                                                                     "Software",
+                                                                     "Conglomerate",
+                                                                     "IT Services"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  42.6,
+                                                    "profile_completeness":  63.7,
+                                                    "recruiter_response_rate":  0.55,
+                                                    "interview_completion_rate":  0.43,
+                                                    "offer_acceptance_rate":  -1
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0079903",
+        "metadata":  {
+                         "years_of_experience":  9.6,
+                         "location":  "Seattle",
+                         "country":  "USA",
+                         "open_to_work":  true,
+                         "preferred_work_mode":  "remote",
+                         "notice_period_days":  120,
+                         "salary_range_lpa":  {
+                                                  "min":  21.9,
+                                                  "max":  34.4
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  ".NET Developer",
+                                               "secondary_roles":  [
+                                                                       ".NET Developer",
+                                                                       "Mobile Developer",
+                                                                       "Frontend Engineer"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Consulting",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "AWS"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "Statistical Modeling"
+                                                           ],
+                                             "ml_infra_skills":  [
+
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "FastAPI",
+                                                                 "Kubernetes",
+                                                                 "AWS"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Feature Engineering Pipelines",
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Android mobile development using Java and (more recently) Kotlin at a consumer-app company at Accenture.",
+                                                            "tags":  [
+                                                                         "AI",
+                                                                         "business analysis"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Test automation and QA engineering for a fintech product at Mindtree.",
+                                                            "tags":  [
+                                                                         "AI",
+                                                                         "machine learning"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_3",
+                                                            "description":  "Cloud infrastructure and DevOps work at an enterprise SaaS company at Mphasis.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "engineering design"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_4",
+                                                            "description":  "Test automation and QA engineering for a fintech product at CRED.",
+                                                            "tags":  [
+                                                                         "AI",
+                                                                         "machine learning"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_5",
+                                                            "description":  "Full-stack web application development at a SaaS company at Zomato.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "engineering design"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_6",
+                                                            "description":  "Android mobile development using Java and (more recently) Kotlin at a consumer-app company at Tech Mahindra.",
+                                                            "tags":  [
+                                                                         "AI",
+                                                                         "business analysis"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Consulting",
+                                                                     "IT Services",
+                                                                     "Fintech",
+                                                                     "Food Delivery"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Feature Engineering Pipelines",
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "high"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  48.4,
+                                                    "profile_completeness":  63.4,
+                                                    "recruiter_response_rate":  0.17,
+                                                    "interview_completion_rate":  0.48,
+                                                    "offer_acceptance_rate":  -1
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0079904",
+        "metadata":  {
+                         "years_of_experience":  2.2,
+                         "location":  "Chandigarh, Chandigarh",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "hybrid",
+                         "notice_period_days":  150,
+                         "salary_range_lpa":  {
+                                                  "min":  21.1,
+                                                  "max":  19.7
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Java Developer",
+                                               "secondary_roles":  [
+                                                                       "Java Developer"
+                                                                   ],
+                                               "seniority":  "mid-level",
+                                               "career_transition":  {
+                                                                         "from":  "Manufacturing",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "SQL"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "TTS",
+                                                               "Diffusion Models"
+                                                           ],
+                                             "ml_infra_skills":  [
+
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Sales",
+                                                                 "Apache Flink",
+                                                                 "Node.js",
+                                                                 "Microservices"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Full-stack web application development at a SaaS company at Globex Inc.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "engineering design"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Manufacturing"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "low",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "low",
+                                                      "ownership":  "medium",
+                                                      "system_design_depth":  "high"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  33.5,
+                                                    "profile_completeness":  53.5,
+                                                    "recruiter_response_rate":  0.65,
+                                                    "interview_completion_rate":  0.68,
+                                                    "offer_acceptance_rate":  -1
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0079905",
+        "metadata":  {
+                         "years_of_experience":  3.5,
+                         "location":  "Bhubaneswar, Odisha",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "remote",
+                         "notice_period_days":  150,
+                         "salary_range_lpa":  {
+                                                  "min":  19.4,
+                                                  "max":  31.1
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Frontend Engineer",
+                                               "secondary_roles":  [
+                                                                       "Frontend Engineer",
+                                                                       "DevOps Engineer"
+                                                                   ],
+                                               "seniority":  "mid-level",
+                                               "career_transition":  {
+                                                                         "from":  "Food Delivery",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Flask"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "LoRA",
+                                                               "HTML",
+                                                               "Image Classification",
+                                                               "Diffusion Models"
+                                                           ],
+                                             "ml_infra_skills":  [
+
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Java",
+                                                                 "Databricks",
+                                                                 "Rust"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "HTML",
+                                                                               "Figma"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Streaming Systems",
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  true
+                                                                   },
+                                                         "production_maturity":  "low",
+                                                         "ml_maturity":  "moderate-low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Java backend development at a large enterprise — Spring Boot microservices, Kafka for inter-service messaging, Postgres + Redis for storage at Zomato.",
+                                                            "tags":  [
+                                                                         "real-time processing"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Frontend engineering at a media company at CRED.",
+                                                            "tags":  [
+                                                                         "engineering design"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Food Delivery",
+                                                                     "Fintech"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Streaming Systems",
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "low",
+                                                      "research_bias":  "medium",
+                                                      "ambiguity_tolerance":  "low",
+                                                      "ownership":  "medium",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  33.1,
+                                                    "profile_completeness":  65.1,
+                                                    "recruiter_response_rate":  0.27,
+                                                    "interview_completion_rate":  0.78,
+                                                    "offer_acceptance_rate":  0.68
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0079906",
+        "metadata":  {
+                         "years_of_experience":  7.5,
+                         "location":  "Hyderabad, Telangana",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "onsite",
+                         "notice_period_days":  60,
+                         "salary_range_lpa":  {
+                                                  "min":  14.6,
+                                                  "max":  26.7
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Business Analyst",
+                                               "secondary_roles":  [
+                                                                       "Business Analyst",
+                                                                       "Customer Support",
+                                                                       "Marketing Manager"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Manufacturing",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Spark"
+                                                                        ],
+                                             "ml_skills":  [
+
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "Kubeflow"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "ETL",
+                                                                 "Spark",
+                                                                 "FastAPI",
+                                                                 "PowerPoint",
+                                                                 "CSS",
+                                                                 "gRPC"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "CSS"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Business analyst at a consulting firm, working primarily with retail and CPG clients. Conducted business diagnostics, process re-engineering work, and digital transformation strategy projects.",
+                                                            "tags":  [
+                                                                         "business analysis",
+                                                                         "consulting"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Business analyst at a consulting firm, working primarily with retail and CPG clients. Conducted business diagnostics, process re-engineering work, and digital transformation strategy projects.",
+                                                            "tags":  [
+                                                                         "business analysis",
+                                                                         "consulting"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_3",
+                                                            "description":  "Senior accounting role at a mid-sized company — month-end close, financial reporting, statutory compliance (GAAP / Ind-AS), and tax filings at Wipro.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Manufacturing",
+                                                                     "IT Services"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  27.3,
+                                                    "recruiter_response_rate":  0.45,
+                                                    "interview_completion_rate":  0.85,
+                                                    "offer_acceptance_rate":  -1
+                                                }
+                          }
+    },
+    {
         "candidate_id":  "CAND_0079907",
         "metadata":  {
                          "years_of_experience":  5.8,

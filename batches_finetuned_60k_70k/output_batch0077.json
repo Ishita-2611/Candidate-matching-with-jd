@@ -1,5 +1,439 @@
 [
     {
+        "candidate_id":  "CAND_0067601",
+        "metadata":  {
+                         "years_of_experience":  2.2,
+                         "location":  "Kolkata, West Bengal",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "onsite",
+                         "notice_period_days":  90,
+                         "salary_range_lpa":  {
+                                                  "min":  16.7,
+                                                  "max":  18.9
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Accountant",
+                                               "secondary_roles":  [
+                                                                       "Accountant"
+                                                                   ],
+                                               "seniority":  "mid-level",
+                                               "career_transition":  {
+                                                                         "from":  "Manufacturing",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+
+                                                                        ],
+                                             "ml_skills":  [
+
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "Weights \u0026 Biases"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Django",
+                                                                 "Agile",
+                                                                 "Angular",
+                                                                 "Kubernetes"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "Tailwind"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Software Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Marketing manager at Stark Industries, content writing, SEO strategy, and AI-assisted content production.",
+                                                            "tags":  [
+                                                                         "content creation",
+                                                                         "SEO",
+                                                                         "AI"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Manufacturing"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Software Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "medium",
+                                                      "product_mindset":  "low",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "low",
+                                                      "ownership":  "medium",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  45.1,
+                                                    "profile_completeness":  47.3,
+                                                    "recruiter_response_rate":  0.31,
+                                                    "interview_completion_rate":  0.82,
+                                                    "offer_acceptance_rate":  0.46
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0067602",
+        "metadata":  {
+                         "years_of_experience":  4.2,
+                         "location":  "Singapore",
+                         "country":  "Singapore",
+                         "open_to_work":  true,
+                         "preferred_work_mode":  "remote",
+                         "notice_period_days":  60,
+                         "salary_range_lpa":  {
+                                                  "min":  6.2,
+                                                  "max":  16.9
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Marketing Manager",
+                                               "secondary_roles":  [
+                                                                       "Marketing Manager"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Software",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "GCP",
+                                                                            "Flask"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "LLMs"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "Embeddings"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Tally",
+                                                                 "Agile",
+                                                                 "GCP",
+                                                                 "BigQuery"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Software Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Enterprise sales of cloud software solutions into the mid-market segment at Pied Piper.",
+                                                            "tags":  [
+                                                                         "customer support",
+                                                                         "marketing"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Enterprise sales of cloud software solutions into the mid-market segment at Pied Piper.",
+                                                            "tags":  [
+                                                                         "customer support",
+                                                                         "marketing"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Software"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Software Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  58.3,
+                                                    "recruiter_response_rate":  0.52,
+                                                    "interview_completion_rate":  0.38,
+                                                    "offer_acceptance_rate":  -1
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0067603",
+        "metadata":  {
+                         "years_of_experience":  13.5,
+                         "location":  "Trivandrum, Kerala",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "hybrid",
+                         "notice_period_days":  90,
+                         "salary_range_lpa":  {
+                                                  "min":  12.5,
+                                                  "max":  13.1
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Operations Manager",
+                                               "secondary_roles":  [
+                                                                       "Operations Manager",
+                                                                       "Graphic Designer",
+                                                                       "Project Manager"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Paper Products",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "MLOps",
+                                                               "LLMs",
+                                                               "Fine-tuning LLMs"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "Vector Search",
+                                                                     "Embeddings"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Figma",
+                                                                 "GraphQL"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "Figma"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Software Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "moderate-low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Enterprise sales of cloud software solutions into the mid-market segment at Dunder Mifflin.",
+                                                            "tags":  [
+                                                                         "customer support",
+                                                                         "AI"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Senior accounting role at a mid-sized company — month-end close, financial reporting, statutory compliance (GAAP / Ind-AS), and tax filings at Wayne Enterprises.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_3",
+                                                            "description":  "Led customer support team at Wayne Enterprises, managed team of 8 support agents, owned escalation process, and built support knowledge base.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management",
+                                                                         "Conglomerate"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_4",
+                                                            "description":  "Marketing leadership role at a B2B SaaS company at Globex Inc.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_5",
+                                                            "description":  "Business analyst at a consulting firm, working primarily with retail and CPG clients. Conducted business diagnostics, process re-engineering work, and digital transformation strategy projects.",
+                                                            "tags":  [
+                                                                         "business analysis",
+                                                                         "consulting"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Paper Products",
+                                                                     "Conglomerate",
+                                                                     "Manufacturing",
+                                                                     "Software"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Software Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  30,
+                                                    "profile_completeness":  74.7,
+                                                    "recruiter_response_rate":  0.47,
+                                                    "interview_completion_rate":  0.68,
+                                                    "offer_acceptance_rate":  0.46
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0067604",
+        "metadata":  {
+                         "years_of_experience":  4.4,
+                         "location":  "Pune, Maharashtra",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "hybrid",
+                         "notice_period_days":  60,
+                         "salary_range_lpa":  {
+                                                  "min":  19.7,
+                                                  "max":  15.5
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Cloud Engineer",
+                                               "secondary_roles":  [
+                                                                       "Cloud Engineer"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Food Delivery",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "MLOps",
+                                                               "Diffusion Models",
+                                                               "MLflow"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "MLflow"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Salesforce CRM",
+                                                                 "Rust",
+                                                                 "PowerPoint"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Software Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "low",
+                                                         "ml_maturity":  "moderate-low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Test automation and QA engineering for a fintech product at Swiggy.",
+                                                            "tags":  [
+                                                                         "AI",
+                                                                         "machine learning"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Food Delivery"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Software Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  30.9,
+                                                    "profile_completeness":  60.1,
+                                                    "recruiter_response_rate":  0.55,
+                                                    "interview_completion_rate":  0.49,
+                                                    "offer_acceptance_rate":  -1
+                                                }
+                          }
+    },
+    {
         "candidate_id":  "CAND_0067605",
         "metadata":  {
                          "years_of_experience":  4.2,
@@ -10692,438 +11126,6 @@
                                                     "recruiter_response_rate":  0.58,
                                                     "interview_completion_rate":  0.71,
                                                     "offer_acceptance_rate":  -1
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0067701",
-        "metadata":  {
-                         "years_of_experience":  4.6,
-                         "location":  "Kochi, Kerala",
-                         "country":  "India",
-                         "open_to_work":  true,
-                         "preferred_work_mode":  "hybrid",
-                         "notice_period_days":  150,
-                         "salary_range_lpa":  {
-                                                  "min":  10.2,
-                                                  "max":  17.2
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Operations Manager",
-                                               "secondary_roles":  [
-                                                                       "Operations Manager",
-                                                                       "Accountant"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "Software",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "Flask"
-                                                                        ],
-                                             "ml_skills":  [
-
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "JavaScript",
-                                                                 "Flask",
-                                                                 "Apache Flink",
-                                                                 "gRPC"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Analytics Pipelines"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Operations management role at a logistics company at Initech.",
-                                                            "tags":  [
-                                                                         "data engineering",
-                                                                         "process management"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Operations management role at a logistics company at Globex Inc.",
-                                                            "tags":  [
-                                                                         "data engineering",
-                                                                         "process management"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Software",
-                                                                     "Manufacturing"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Analytics Pipelines"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  34.8,
-                                                    "profile_completeness":  78.1,
-                                                    "recruiter_response_rate":  0.44,
-                                                    "interview_completion_rate":  0.47,
-                                                    "offer_acceptance_rate":  0.53
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0067702",
-        "metadata":  {
-                         "years_of_experience":  1.6,
-                         "location":  "New York",
-                         "country":  "USA",
-                         "open_to_work":  false,
-                         "preferred_work_mode":  "onsite",
-                         "notice_period_days":  90,
-                         "salary_range_lpa":  {
-                                                  "min":  4,
-                                                  "max":  14.8
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Mechanical Engineer",
-                                               "secondary_roles":  [
-                                                                       "Mechanical Engineer"
-                                                                   ],
-                                               "seniority":  "early-career",
-                                               "career_transition":  {
-                                                                         "from":  "Manufacturing",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-
-                                                                        ],
-                                             "ml_skills":  [
-
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Vue.js",
-                                                                 "Node.js",
-                                                                 "Rust"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Software Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Enterprise sales of cloud software solutions into the mid-market segment at Globex Inc.",
-                                                            "tags":  [
-                                                                         "customer support",
-                                                                         "AI"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Manufacturing"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Software Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "low",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  72.9,
-                                                    "recruiter_response_rate":  0.07,
-                                                    "interview_completion_rate":  0.87,
-                                                    "offer_acceptance_rate":  -1
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0067703",
-        "metadata":  {
-                         "years_of_experience":  10.8,
-                         "location":  "Austin",
-                         "country":  "USA",
-                         "open_to_work":  false,
-                         "preferred_work_mode":  "onsite",
-                         "notice_period_days":  150,
-                         "salary_range_lpa":  {
-                                                  "min":  5.9,
-                                                  "max":  24.4
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Content Writer",
-                                               "secondary_roles":  [
-                                                                       "Content Writer",
-                                                                       "HR Manager",
-                                                                       "Mechanical Engineer"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "IT Services",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "PostgreSQL",
-                                                                            "dbt"
-                                                                        ],
-                                             "ml_skills":  [
-
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Node.js",
-                                                                 "PostgreSQL",
-                                                                 "Django"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-                                                                               "Photoshop"
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Analytics Pipelines",
-                                                                              "Backend Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Operations management role at a logistics company at Infosys.",
-                                                            "tags":  [
-                                                                         "data engineering",
-                                                                         "process management"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Business analyst at a consulting firm, working primarily with retail and CPG clients. Conducted business diagnostics, process re-engineering work, and digital transformation strategy projects.",
-                                                            "tags":  [
-                                                                         "business analysis",
-                                                                         "consulting"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_3",
-                                                            "description":  "Senior accounting role at a mid-sized company — month-end close, financial reporting, statutory compliance (GAAP / Ind-AS), and tax filings at Infosys.",
-                                                            "tags":  [
-                                                                         "team management",
-                                                                         "process management"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_4",
-                                                            "description":  "Senior accounting role at a mid-sized company — month-end close, financial reporting, statutory compliance (GAAP / Ind-AS), and tax filings at TCS.",
-                                                            "tags":  [
-                                                                         "team management",
-                                                                         "process management"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "IT Services",
-                                                                     "Manufacturing"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Analytics Pipelines",
-                                                                       "Backend Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  61.6,
-                                                    "recruiter_response_rate":  0.51,
-                                                    "interview_completion_rate":  0.75,
-                                                    "offer_acceptance_rate":  -1
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0067704",
-        "metadata":  {
-                         "years_of_experience":  4.7,
-                         "location":  "London",
-                         "country":  "UK",
-                         "open_to_work":  false,
-                         "preferred_work_mode":  "remote",
-                         "notice_period_days":  150,
-                         "salary_range_lpa":  {
-                                                  "min":  4.5,
-                                                  "max":  17.9
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Operations Manager",
-                                               "secondary_roles":  [
-                                                                       "Operations Manager",
-                                                                       "Accountant"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "Manufacturing",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "AWS",
-                                                                            "Spark"
-                                                                        ],
-                                             "ml_skills":  [
-                                                               "LLMs"
-                                                           ],
-                                             "ml_infra_skills":  [
-                                                                     "Vector Search"
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Docker",
-                                                                 "Terraform",
-                                                                 "CSS"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-                                                                               "CSS"
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Software Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Marketing leadership role at a B2B SaaS company at Acme Corp.",
-                                                            "tags":  [
-                                                                         "team management",
-                                                                         "process management"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Business analyst at a consulting firm, working primarily with retail and CPG clients. Conducted business diagnostics, process re-engineering work, and digital transformation strategy projects.",
-                                                            "tags":  [
-                                                                         "business analysis",
-                                                                         "consulting"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Manufacturing",
-                                                                     "Software"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Software Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  75.8,
-                                                    "recruiter_response_rate":  0.64,
-                                                    "interview_completion_rate":  0.53,
-                                                    "offer_acceptance_rate":  0.57
                                                 }
                           }
     }

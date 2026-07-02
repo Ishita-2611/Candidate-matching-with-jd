@@ -1,5 +1,229 @@
 [
     {
+        "candidate_id":  "CAND_0064201",
+        "metadata":  {
+                         "years_of_experience":  4.9,
+                         "location":  "Chandigarh, Chandigarh",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "hybrid",
+                         "notice_period_days":  30,
+                         "salary_range_lpa":  {
+                                                  "min":  7.7,
+                                                  "max":  24
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Cloud Engineer",
+                                               "secondary_roles":  [
+                                                                       "Cloud Engineer",
+                                                                       "Frontend Engineer"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "IT Services",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Airflow",
+                                                                            "Snowflake"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "Diffusion Models",
+                                                               "Image Classification"
+                                                           ],
+                                             "ml_infra_skills":  [
+
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Airflow",
+                                                                 "Data Pipelines",
+                                                                 "PowerPoint",
+                                                                 "Snowflake"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Streaming Systems",
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  true
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "moderate-low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Full-stack web application development at a SaaS company at Mphasis.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "engineering design"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Java backend development at a large enterprise — Spring Boot microservices, Kafka for inter-service messaging, Postgres + Redis for storage at Accenture.",
+                                                            "tags":  [
+                                                                         "real-time processing"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_3",
+                                                            "description":  "Java backend development at a large enterprise — Spring Boot microservices, Kafka for inter-service messaging, Postgres + Redis for storage at Pied Piper.",
+                                                            "tags":  [
+                                                                         "real-time processing"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "IT Services",
+                                                                     "Consulting",
+                                                                     "Software"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Streaming Systems",
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "low",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "medium",
+                                                      "system_design_depth":  "high"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  75.6,
+                                                    "recruiter_response_rate":  0.62,
+                                                    "interview_completion_rate":  0.78,
+                                                    "offer_acceptance_rate":  -1
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0064202",
+        "metadata":  {
+                         "years_of_experience":  2.9,
+                         "location":  "Sydney",
+                         "country":  "Australia",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "flexible",
+                         "notice_period_days":  90,
+                         "salary_range_lpa":  {
+                                                  "min":  8.3,
+                                                  "max":  10.3
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Content Writer",
+                                               "secondary_roles":  [
+                                                                       "Content Writer",
+                                                                       "Mechanical Engineer"
+                                                                   ],
+                                               "seniority":  "mid-level",
+                                               "career_transition":  {
+                                                                         "from":  "Manufacturing",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "PostgreSQL"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "MLflow"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "MLflow"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "BigQuery",
+                                                                 "Six Sigma",
+                                                                 "Data Pipelines",
+                                                                 "Spring Boot"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Software Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Led customer support team at Acme Corp, managed team of 8 support agents, owned escalation process, and built support knowledge base.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management",
+                                                                         "Manufacturing"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Marketing leadership role at a B2B SaaS company at Wayne Enterprises.",
+                                                            "tags":  [
+                                                                         "team management",
+                                                                         "process management"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Manufacturing",
+                                                                     "Conglomerate"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Software Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "low",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  49.6,
+                                                    "recruiter_response_rate":  0.6,
+                                                    "interview_completion_rate":  0.71,
+                                                    "offer_acceptance_rate":  0.45
+                                                }
+                          }
+    },
+    {
         "candidate_id":  "CAND_0064203",
         "metadata":  {
                          "years_of_experience":  5.2,
@@ -11174,247 +11398,6 @@
                                                     "recruiter_response_rate":  0.35,
                                                     "interview_completion_rate":  0.61,
                                                     "offer_acceptance_rate":  0.59
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0064301",
-        "metadata":  {
-                         "years_of_experience":  6.8,
-                         "location":  "Gurgaon, Haryana",
-                         "country":  "India",
-                         "open_to_work":  false,
-                         "preferred_work_mode":  "onsite",
-                         "notice_period_days":  90,
-                         "salary_range_lpa":  {
-                                                  "min":  13.7,
-                                                  "max":  28.7
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Full Stack Developer",
-                                               "secondary_roles":  [
-                                                                       "Full Stack Developer",
-                                                                       "Mobile Developer",
-                                                                       "Frontend Engineer"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "Fintech",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "Apache Beam"
-                                                                        ],
-                                             "ml_skills":  [
-                                                               "MLOps"
-                                                           ],
-                                             "ml_infra_skills":  [
-                                                                     "Kubeflow"
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "MongoDB",
-                                                                 "Illustrator",
-                                                                 "Apache Beam",
-                                                                 "Six Sigma",
-                                                                 "Redis",
-                                                                 "Photoshop"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-                                                                               "Photoshop"
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Backend Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Full-stack web application development at a SaaS company at CRED.",
-                                                            "tags":  [
-                                                                         "data engineering",
-                                                                         "engineering design"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Frontend engineering at a media company at Pied Piper.",
-                                                            "tags":  [
-                                                                         "engineering design"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_3",
-                                                            "description":  "Full-stack web application development at a SaaS company at Hooli.",
-                                                            "tags":  [
-                                                                         "data engineering",
-                                                                         "engineering design"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Fintech",
-                                                                     "Software"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Backend Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "low",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "medium",
-                                                      "system_design_depth":  "high"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  44.1,
-                                                    "recruiter_response_rate":  0.59,
-                                                    "interview_completion_rate":  0.91,
-                                                    "offer_acceptance_rate":  0.77
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0064302",
-        "metadata":  {
-                         "years_of_experience":  5.7,
-                         "location":  "Toronto",
-                         "country":  "Canada",
-                         "open_to_work":  true,
-                         "preferred_work_mode":  "onsite",
-                         "notice_period_days":  120,
-                         "salary_range_lpa":  {
-                                                  "min":  20.4,
-                                                  "max":  43.8
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Senior Software Engineer",
-                                               "secondary_roles":  [
-                                                                       "Senior Software Engineer",
-                                                                       "Software Engineer",
-                                                                       "Backend Engineer"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "Consulting",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-
-                                                                        ],
-                                             "ml_skills":  [
-                                                               "Diffusion Models",
-                                                               "GANs",
-                                                               "Speech Recognition",
-                                                               "LoRA"
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Accounting",
-                                                                 "Photoshop"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-                                                                               "Photoshop"
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Streaming Systems",
-                                                                              "Batch Processing",
-                                                                              "Analytics Pipelines",
-                                                                              "Feature Engineering Pipelines",
-                                                                              "Backend Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "~500GB",
-                                                                       "source_systems":  12,
-                                                                       "realtime_systems":  true
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "moderate-low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Built and maintained data pipelines on Apache Airflow processing ~500GB of daily transactional data across 12 source systems at Accenture.",
-                                                            "tags":  [
-                                                                         "data engineering",
-                                                                         "batch processing"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Backend development with Python (FastAPI), PostgreSQL, and Redis at a B2B SaaS product at Dream11.",
-                                                            "tags":  [
-                                                                         "data engineering",
-                                                                         "engineering design"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_3",
-                                                            "description":  "Implemented streaming data pipelines on Kafka and Spark Streaming for a real-time user-activity processing platform at Zoho.",
-                                                            "tags":  [
-                                                                         "data engineering",
-                                                                         "real-time processing"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Consulting",
-                                                                     "Gaming",
-                                                                     "SaaS"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Streaming Systems",
-                                                                       "Batch Processing",
-                                                                       "Analytics Pipelines",
-                                                                       "Feature Engineering Pipelines",
-                                                                       "Backend Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "high"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  8.2,
-                                                    "profile_completeness":  51.1,
-                                                    "recruiter_response_rate":  0.8,
-                                                    "interview_completion_rate":  0.89,
-                                                    "offer_acceptance_rate":  0.52
                                                 }
                           }
     }

@@ -10118,6 +10118,117 @@
                           }
     },
     {
+        "candidate_id":  "CAND_0071391",
+        "metadata":  {
+                         "years_of_experience":  4.5,
+                         "location":  "Bangalore, Karnataka",
+                         "country":  "India",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "flexible",
+                         "notice_period_days":  60,
+                         "salary_range_lpa":  {
+                                                  "min":  18,
+                                                  "max":  23.3
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Frontend Engineer",
+                                               "secondary_roles":  [
+                                                                       "Frontend Engineer",
+                                                                       "Java Developer"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Food Delivery",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Apache Beam",
+                                                                            "AWS"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "Statistical Modeling",
+                                                               "Fine-tuning LLMs",
+                                                               "TTS"
+                                                           ],
+                                             "ml_infra_skills":  [
+
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "React",
+                                                                 "Java",
+                                                                 "AWS",
+                                                                 "Marketing",
+                                                                 "ETL"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Streaming Systems",
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  true
+                                                                   },
+                                                         "production_maturity":  "moderate",
+                                                         "ml_maturity":  "moderate-low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Frontend engineering at a media company at Swiggy.",
+                                                            "tags":  [
+                                                                         "engineering design"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Java backend development at a large enterprise — Spring Boot microservices, Kafka for inter-service messaging, Postgres + Redis for storage at Acme Corp.",
+                                                            "tags":  [
+                                                                         "real-time processing",
+                                                                         "engineering design"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Food Delivery",
+                                                                     "Manufacturing"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Streaming Systems",
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "low",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "medium",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  45.7,
+                                                    "profile_completeness":  42.7,
+                                                    "recruiter_response_rate":  0.6,
+                                                    "interview_completion_rate":  0.94,
+                                                    "offer_acceptance_rate":  0.21
+                                                }
+                          }
+    },
+    {
         "candidate_id":  "CAND_0071392",
         "metadata":  {
                          "years_of_experience":  4.9,
@@ -11100,119 +11211,6 @@
                                                     "recruiter_response_rate":  0.5,
                                                     "interview_completion_rate":  0.66,
                                                     "offer_acceptance_rate":  0.75
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0071401",
-        "metadata":  {
-                         "years_of_experience":  4.3,
-                         "location":  "Chandigarh, Chandigarh",
-                         "country":  "India",
-                         "open_to_work":  true,
-                         "preferred_work_mode":  "flexible",
-                         "notice_period_days":  120,
-                         "salary_range_lpa":  {
-                                                  "min":  13.2,
-                                                  "max":  29.1
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Full Stack Developer",
-                                               "secondary_roles":  [
-                                                                       "Full Stack Developer",
-                                                                       "Mobile Developer"
-                                                                   ],
-                                               "seniority":  "experienced",
-                                               "career_transition":  {
-                                                                         "from":  "Software",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "Apache Beam",
-                                                                            "Kafka",
-                                                                            "GCP"
-                                                                        ],
-                                             "ml_skills":  [
-                                                               "TTS"
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Apache Beam",
-                                                                 "REST APIs",
-                                                                 "Kafka",
-                                                                 "Project Management",
-                                                                 "Microservices",
-                                                                 "Webpack",
-                                                                 "GCP"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Feature Engineering Pipelines",
-                                                                              "Backend Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Test automation and QA engineering for a fintech product at Hooli.",
-                                                            "tags":  [
-                                                                         "AI",
-                                                                         "machine learning"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Android mobile development using Java and (more recently) Kotlin at a consumer-app company at Tech Mahindra.",
-                                                            "tags":  [
-                                                                         "AI",
-                                                                         "machine learning"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Software",
-                                                                     "IT Services"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Feature Engineering Pipelines",
-                                                                       "Backend Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  63.9,
-                                                    "profile_completeness":  40.8,
-                                                    "recruiter_response_rate":  0.71,
-                                                    "interview_completion_rate":  0.66,
-                                                    "offer_acceptance_rate":  0.43
                                                 }
                           }
     }

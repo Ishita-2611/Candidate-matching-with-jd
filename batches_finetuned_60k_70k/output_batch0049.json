@@ -1,5 +1,222 @@
 [
     {
+        "candidate_id":  "CAND_0064801",
+        "metadata":  {
+                         "years_of_experience":  7.2,
+                         "location":  "San Francisco",
+                         "country":  "USA",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "remote",
+                         "notice_period_days":  90,
+                         "salary_range_lpa":  {
+                                                  "min":  5.8,
+                                                  "max":  26.2
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "HR Manager",
+                                               "secondary_roles":  [
+                                                                       "HR Manager",
+                                                                       "Marketing Manager"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "IT Services",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Apache Beam"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "Fine-tuning LLMs"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "Embeddings"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "Photoshop",
+                                                                 "Apache Beam",
+                                                                 "Vue.js",
+                                                                 "Tailwind"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "Photoshop",
+                                                                               "Tailwind"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Analytics Pipelines",
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "high",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Marketing manager at TCS, content writing, SEO strategy, and AI-assisted content production.",
+                                                            "tags":  [
+                                                                         "content creation",
+                                                                         "SEO",
+                                                                         "AI"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Operations management role at a logistics company at Infosys.",
+                                                            "tags":  [
+                                                                         "data engineering",
+                                                                         "process management"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "IT Services"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Analytics Pipelines",
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "medium",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "high",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  -1,
+                                                    "profile_completeness":  31.9,
+                                                    "recruiter_response_rate":  0.48,
+                                                    "interview_completion_rate":  0.78,
+                                                    "offer_acceptance_rate":  0.33
+                                                }
+                          }
+    },
+    {
+        "candidate_id":  "CAND_0064802",
+        "metadata":  {
+                         "years_of_experience":  4.7,
+                         "location":  "Dubai",
+                         "country":  "UAE",
+                         "open_to_work":  false,
+                         "preferred_work_mode":  "remote",
+                         "notice_period_days":  90,
+                         "salary_range_lpa":  {
+                                                  "min":  17.8,
+                                                  "max":  34.6
+                                              }
+                     },
+        "semantic_axes":  {
+                              "identity":  {
+                                               "role_family":  "Software Engineer",
+                                               "secondary_roles":  [
+                                                                       "Software Engineer",
+                                                                       "Java Developer"
+                                                                   ],
+                                               "seniority":  "experienced",
+                                               "career_transition":  {
+                                                                         "from":  "Food Delivery",
+                                                                         "to":  "AI/ML-focused work"
+                                                                     }
+                                           },
+                              "skills":  {
+                                             "core_production_skills":  [
+                                                                            "Flask",
+                                                                            "PostgreSQL"
+                                                                        ],
+                                             "ml_skills":  [
+                                                               "BentoML"
+                                                           ],
+                                             "ml_infra_skills":  [
+                                                                     "BentoML"
+                                                                 ],
+                                             "weak_skills":  [
+                                                                 "PowerPoint",
+                                                                 "Agile",
+                                                                 "Tailwind",
+                                                                 "Flask",
+                                                                 "PostgreSQL",
+                                                                 "Node.js",
+                                                                 "Microservices"
+                                                             ],
+                                             "noisy_non_relevant_skills":  [
+                                                                               "Tailwind"
+                                                                           ]
+                                         },
+                              "experience_summary":  {
+                                                         "system_types":  [
+                                                                              "Backend Systems"
+                                                                          ],
+                                                         "scale":  {
+                                                                       "daily_data_processed":  "unknown",
+                                                                       "source_systems":  0,
+                                                                       "realtime_systems":  false
+                                                                   },
+                                                         "production_maturity":  "moderate",
+                                                         "ml_maturity":  "low"
+                                                     },
+                              "experience_chunks":  [
+                                                        {
+                                                            "id":  "chunk_1",
+                                                            "description":  "Frontend engineering at a media company at Swiggy.",
+                                                            "tags":  [
+                                                                         "engineering design"
+                                                                     ]
+                                                        },
+                                                        {
+                                                            "id":  "chunk_2",
+                                                            "description":  "Frontend engineering at a media company at Cognizant.",
+                                                            "tags":  [
+                                                                         "engineering design"
+                                                                     ]
+                                                        }
+                                                    ],
+                              "domain":  {
+                                             "primary_domains":  [
+                                                                     "Food Delivery",
+                                                                     "IT Services"
+                                                                 ],
+                                             "secondary_domains":  [
+                                                                       "Backend Systems"
+                                                                   ],
+                                             "missing_domains":  [
+
+                                                                 ]
+                                         },
+                              "execution_style":  {
+                                                      "shipping_bias":  "high",
+                                                      "product_mindset":  "low",
+                                                      "research_bias":  "low",
+                                                      "ambiguity_tolerance":  "medium",
+                                                      "ownership":  "medium",
+                                                      "system_design_depth":  "medium"
+                                                  },
+                              "trust_signals":  {
+                                                    "github_score":  63.3,
+                                                    "profile_completeness":  79,
+                                                    "recruiter_response_rate":  0.12,
+                                                    "interview_completion_rate":  0.9,
+                                                    "offer_acceptance_rate":  0.7
+                                                }
+                          }
+    },
+    {
         "candidate_id":  "CAND_0064803",
         "metadata":  {
                          "years_of_experience":  5.2,
@@ -10813,210 +11030,6 @@
                                                     "profile_completeness":  58.5,
                                                     "recruiter_response_rate":  0.61,
                                                     "interview_completion_rate":  0.65,
-                                                    "offer_acceptance_rate":  -1
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0064901",
-        "metadata":  {
-                         "years_of_experience":  10.5,
-                         "location":  "Berlin",
-                         "country":  "Germany",
-                         "open_to_work":  true,
-                         "preferred_work_mode":  "remote",
-                         "notice_period_days":  60,
-                         "salary_range_lpa":  {
-                                                  "min":  15.2,
-                                                  "max":  10.8
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Marketing",
-                                               "secondary_roles":  [
-                                                                       "Sales",
-                                                                       "Civil Engineer"
-                                                                   ],
-                                               "seniority":  "senior",
-                                               "career_transition":  {
-                                                                         "from":  "IT Services",
-                                                                         "to":  "Marketing"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "Marketing",
-                                                                            "Project Management"
-                                                                        ],
-                                             "ml_skills":  [
-
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Sales",
-                                                                 "Accounting"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-                                                                               "Angular",
-                                                                               "Databricks"
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "moderate",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Marketing Manager at TCS, leading marketing efforts and experimenting with AI tools.",
-                                                            "tags":  [
-                                                                         "Marketing",
-                                                                         "AI",
-                                                                         "TCS"
-                                                                     ]
-                                                        },
-                                                        {
-                                                            "id":  "chunk_2",
-                                                            "description":  "Civil Engineer at Wayne Enterprises, leading design and development of products.",
-                                                            "tags":  [
-                                                                         "Engineering",
-                                                                         "Civil Engineering"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Marketing",
-                                                                     "IT Services"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Sales",
-                                                                       "Civil Engineering"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "medium",
-                                                      "product_mindset":  "medium",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "medium",
-                                                      "ownership":  "medium",
-                                                      "system_design_depth":  "low"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  61.8,
-                                                    "recruiter_response_rate":  0.53,
-                                                    "interview_completion_rate":  0.73,
-                                                    "offer_acceptance_rate":  -1
-                                                }
-                          }
-    },
-    {
-        "candidate_id":  "CAND_0064902",
-        "metadata":  {
-                         "years_of_experience":  2,
-                         "location":  "Bangalore, Karnataka",
-                         "country":  "India",
-                         "open_to_work":  true,
-                         "preferred_work_mode":  "onsite",
-                         "notice_period_days":  60,
-                         "salary_range_lpa":  {
-                                                  "min":  7,
-                                                  "max":  17
-                                              }
-                     },
-        "semantic_axes":  {
-                              "identity":  {
-                                               "role_family":  "Civil Engineer",
-                                               "secondary_roles":  [
-                                                                       "Civil Engineer"
-                                                                   ],
-                                               "seniority":  "mid-level",
-                                               "career_transition":  {
-                                                                         "from":  "Software",
-                                                                         "to":  "AI/ML-focused work"
-                                                                     }
-                                           },
-                              "skills":  {
-                                             "core_production_skills":  [
-                                                                            "Apache Beam"
-                                                                        ],
-                                             "ml_skills":  [
-
-                                                           ],
-                                             "ml_infra_skills":  [
-
-                                                                 ],
-                                             "weak_skills":  [
-                                                                 "Terraform",
-                                                                 "Apache Beam",
-                                                                 "Illustrator",
-                                                                 "Apache Flink"
-                                                             ],
-                                             "noisy_non_relevant_skills":  [
-
-                                                                           ]
-                                         },
-                              "experience_summary":  {
-                                                         "system_types":  [
-                                                                              "Software Systems"
-                                                                          ],
-                                                         "scale":  {
-                                                                       "daily_data_processed":  "unknown",
-                                                                       "source_systems":  0,
-                                                                       "realtime_systems":  false
-                                                                   },
-                                                         "production_maturity":  "high",
-                                                         "ml_maturity":  "low"
-                                                     },
-                              "experience_chunks":  [
-                                                        {
-                                                            "id":  "chunk_1",
-                                                            "description":  "Brand design and creative direction at a consumer-products company at Pied Piper.",
-                                                            "tags":  [
-                                                                         "marketing",
-                                                                         "engineering design"
-                                                                     ]
-                                                        }
-                                                    ],
-                              "domain":  {
-                                             "primary_domains":  [
-                                                                     "Software"
-                                                                 ],
-                                             "secondary_domains":  [
-                                                                       "Software Systems"
-                                                                   ],
-                                             "missing_domains":  [
-
-                                                                 ]
-                                         },
-                              "execution_style":  {
-                                                      "shipping_bias":  "high",
-                                                      "product_mindset":  "low",
-                                                      "research_bias":  "low",
-                                                      "ambiguity_tolerance":  "low",
-                                                      "ownership":  "high",
-                                                      "system_design_depth":  "medium"
-                                                  },
-                              "trust_signals":  {
-                                                    "github_score":  -1,
-                                                    "profile_completeness":  53.9,
-                                                    "recruiter_response_rate":  0.08,
-                                                    "interview_completion_rate":  0.54,
                                                     "offer_acceptance_rate":  -1
                                                 }
                           }
