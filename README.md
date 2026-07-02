@@ -43,13 +43,59 @@ Run:
 python rank.py --candidates candidates.jsonl --retrieval retrieval_candidates.json --out submission.csv
 ```
 
-Expected runtime on this machine: about 13 seconds CPU-only.
+Expected runtime on this machine: under 1 minute CPU-only.
 
 No network, GPU, hosted LLM, Qdrant call, or external API is used during this ranking step.
 
 ## Optional Precompute
 
-Only needed if regenerating the retrieval artifact from Qdrant Cloud:
+The final CSV can be reproduced from the checked-in retrieval artifact. The
+following commands document the full pipeline used to produce that artifact and
+show the modeling thought process.
+
+Parse the JD into the semantic schema:
+
+```powershell
+npm run parse:jd
+```
+
+Create BGE-M3 multivector embeddings for the JD:
+
+```powershell
+npm run embed:jd
+```
+
+Prepare and evaluate fine-tuning data for the semantic candidate generator:
+
+```powershell
+npm run finetune:prepare
+npm run finetune:evaluate
+```
+
+Generate semantic candidate batches with the deployed fine-tuned model:
+
+```powershell
+$env:OPENPIPE_API_KEY="..."
+$env:FINETUNED_BASE_URL="https://app.openpipe.ai/api/v1"
+$env:FINETUNED_MODEL="openpipe:cruel-cooks-search"
+$env:FINETUNED_OUTPUT_DIR="batches_finetuned"
+$env:FINETUNED_START_OFFSET="0"
+$env:FINETUNED_LIMIT="1000"
+$env:FINETUNED_CONCURRENCY="3"
+npm run generate:finetuned
+```
+
+Embed semantic candidate batches into Qdrant with BGE-M3 named vectors:
+
+```powershell
+$env:BATCHES_DIR="batches_finetuned"
+$env:QDRANT_URL="https://your-cluster.region.cloud.qdrant.io"
+$env:QDRANT_API_KEY="..."
+$env:QDRANT_COLLECTION="candidate_semantic_multivectors_bge_m3"
+npm run embed:batches
+```
+
+Regenerate the retrieval artifact from Qdrant Cloud:
 
 ```powershell
 $env:QDRANT_URL="https://your-cluster.region.cloud.qdrant.io"
@@ -72,6 +118,9 @@ npm test
 python rank.py --candidates candidates.jsonl --retrieval retrieval_candidates.json --out submission.csv
 ```
 
+Before portal submission, fill the `TODO` values in `submission_metadata.yaml`
+with the final team/contact, GitHub repository, and sandbox/demo details.
+
 The current output validates as:
 
 - 100 rows plus header
@@ -93,8 +142,23 @@ submission.csv
 README.md
 requirements.txt
 package.json
+package-lock.json
 precompute-retrieval.js
 job_description.md
+jd-parser.js
+jd-semantic.json
+embed-jd.js
+jd-embeddings.json
+generate-semantic-finetuned.js
+prepare-finetune-data.js
+evaluate-finetuned-semantic.js
+embed-batches-qdrant.js
+search-qdrant.js
+rerank-candidates.js
+rag-pipeline.js
+hard-filters.js
+redrob-signals.js
+detect-honeypots.js
 ```
 
 Large/generated files such as semantic text batches, local Qdrant storage, caches, and XLSX scratch outputs are intentionally ignored.

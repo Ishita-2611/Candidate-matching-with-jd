@@ -31,6 +31,7 @@ JD_SKILL_TERMS = [
 ROLE_TERMS = ["ml", "machine learning", "ai", "data engineer", "backend", "platform", "search", "ranking", "retrieval"]
 SERVICE_COMPANIES = ["wipro", "tcs", "infosys", "accenture", "cognizant", "capgemini", "hcl", "tech mahindra", "mindtree"]
 PREFERRED_LOCATIONS = ["pune", "noida", "hyderabad", "mumbai", "delhi", "gurgaon", "gurugram", "bangalore", "bengaluru"]
+DEFAULT_ALLOWED_WORK_MODES = {"onsite", "hybrid", "flexible"}
 
 
 def clamp01(value):
@@ -67,6 +68,35 @@ def higher_better(value, max_good):
     if value is None:
         return None
     return clamp01(float(value) / max_good)
+
+
+def average(values):
+    valid = [value for value in values if value is not None]
+    return sum(valid) / len(valid) if valid else None
+
+
+def salary_overlap_score(candidate_salary, jd_min=18.0, jd_max=60.0):
+    if not isinstance(candidate_salary, dict):
+        return None
+    cand_min = candidate_salary.get("min")
+    cand_max = candidate_salary.get("max")
+    if cand_min is None or cand_max is None:
+        return None
+    cand_min = float(cand_min)
+    cand_max = float(cand_max)
+    overlap = max(0.0, min(cand_max, jd_max) - max(cand_min, jd_min))
+    return clamp01(overlap / max(1.0, jd_max - jd_min))
+
+
+def work_mode_fit_score(work_mode):
+    mode = str(work_mode or "").lower()
+    if mode in {"hybrid", "onsite"}:
+        return 1.0
+    if mode == "flexible":
+        return 0.85
+    if mode == "remote":
+        return 0.45
+    return None
 
 
 def load_retrieval_candidates(path):
@@ -160,6 +190,12 @@ def honeypot_analysis(candidate):
         flags.append(("last_active_before_signup", 1, redrob.get("last_active_date")))
     if float(redrob.get("saved_by_recruiters_30d") or 0) > float(redrob.get("profile_views_received_30d") or 0):
         flags.append(("saves_exceed_views", 2, "saves exceed views"))
+    if float(redrob.get("applications_submitted_30d") or 0) > 80:
+        flags.append(("extreme_application_volume", 2, redrob.get("applications_submitted_30d")))
+    if signup and signup > CURRENT_DATE:
+        flags.append(("signup_date_in_future", 3, redrob.get("signup_date")))
+    if active and active > CURRENT_DATE:
+        flags.append(("last_active_date_in_future", 3, redrob.get("last_active_date")))
     if not redrob.get("verified_email") and not redrob.get("verified_phone") and not redrob.get("linkedin_connected"):
         flags.append(("no_identity_verification", 2, "email, phone, linkedin all false"))
 
@@ -169,32 +205,57 @@ def honeypot_analysis(candidate):
 def behavioral_score(redrob):
     last_active = parse_date(redrob.get("last_active_date"))
     days_inactive = (CURRENT_DATE - last_active).days if last_active else 180
+    assessment_scores = [
+        normalize_percent(score)
+        for score in (redrob.get("skill_assessment_scores") or {}).values()
+    ]
     components = {
+        "profile_completeness": normalize_percent(redrob.get("profile_completeness_score")),
         "open_to_work": 1.0 if redrob.get("open_to_work_flag") else 0.0,
         "activity_recency": lower_better(days_inactive, 180),
+        "profile_views": higher_better(redrob.get("profile_views_received_30d"), 100),
+        "application_activity": higher_better(redrob.get("applications_submitted_30d"), 20),
         "recruiter_response": normalize_percent(redrob.get("recruiter_response_rate")),
+        "response_speed": lower_better(redrob.get("avg_response_time_hours"), 168),
+        "skill_assessments": average(assessment_scores),
+        "network_connections": higher_better(redrob.get("connection_count"), 500),
+        "endorsements": higher_better(redrob.get("endorsements_received"), 100),
         "interview_completion": normalize_percent(redrob.get("interview_completion_rate")),
         "notice_period": 1.0
         if float(redrob.get("notice_period_days") or 999) <= 30
         else 0.35
         if float(redrob.get("notice_period_days") or 999) <= 60
         else 0.0,
+        "salary_fit": salary_overlap_score(redrob.get("expected_salary_range_inr_lpa")),
+        "work_mode_fit": work_mode_fit_score(redrob.get("preferred_work_mode")),
+        "relocation_fit": 1.0 if redrob.get("willing_to_relocate") else 0.4,
         "github_activity": normalize_percent(redrob.get("github_activity_score")),
+        "search_appearance": higher_better(redrob.get("search_appearance_30d"), 300),
         "profile_completeness": normalize_percent(redrob.get("profile_completeness_score")),
         "offer_acceptance": normalize_percent(redrob.get("offer_acceptance_rate")),
         "verified_identity": sum(bool(redrob.get(key)) for key in ["verified_email", "verified_phone", "linkedin_connected"]) / 3.0,
         "recruiter_saves": higher_better(redrob.get("saved_by_recruiters_30d"), 20),
     }
     weights = {
-        "open_to_work": 0.20,
-        "activity_recency": 0.16,
-        "recruiter_response": 0.16,
-        "interview_completion": 0.12,
-        "notice_period": 0.10,
-        "github_activity": 0.08,
-        "profile_completeness": 0.06,
+        "profile_completeness": 0.05,
+        "open_to_work": 0.08,
+        "activity_recency": 0.10,
+        "profile_views": 0.03,
+        "application_activity": 0.03,
+        "recruiter_response": 0.09,
+        "response_speed": 0.05,
+        "skill_assessments": 0.08,
+        "network_connections": 0.03,
+        "endorsements": 0.04,
+        "interview_completion": 0.07,
+        "notice_period": 0.09,
+        "salary_fit": 0.07,
+        "work_mode_fit": 0.06,
+        "relocation_fit": 0.03,
+        "github_activity": 0.06,
+        "search_appearance": 0.03,
         "offer_acceptance": 0.05,
-        "verified_identity": 0.04,
+        "verified_identity": 0.03,
         "recruiter_saves": 0.03,
     }
     total = 0.0
@@ -205,6 +266,21 @@ def behavioral_score(redrob):
             total += clamp01(value) * weight
             used += weight
     return total / used if used else 0.0
+
+
+def passes_hard_filters(candidate, min_years_experience=4.0, allowed_work_modes=None):
+    profile = candidate.get("profile", {})
+    redrob = candidate.get("redrob_signals", {})
+    country = str(profile.get("country", "")).lower()
+    yoe = float(profile.get("years_of_experience") or 0)
+    work_mode = str(redrob.get("preferred_work_mode", "")).lower()
+    if country != "india":
+        return False
+    if yoe < min_years_experience:
+        return False
+    if allowed_work_modes and work_mode and work_mode not in allowed_work_modes:
+        return False
+    return True
 
 
 def profile_score(candidate, text):
@@ -363,14 +439,19 @@ def main():
     parser.add_argument("--out", default="submission.csv")
     parser.add_argument("--limit", type=int, default=100)
     parser.add_argument("--honeypot-severity-threshold", type=float, default=3.0)
+    parser.add_argument("--min-years-experience", type=float, default=4.0)
+    parser.add_argument("--allow-remote", action="store_true")
     args = parser.parse_args()
 
     retrieval = load_retrieval_candidates(args.retrieval)
     candidates = read_candidate_subset(args.candidates, set(retrieval))
     ranked = []
+    allowed_work_modes = None if args.allow_remote else DEFAULT_ALLOWED_WORK_MODES
     for candidate_id, retrieval_score in retrieval.items():
         candidate = candidates.get(candidate_id)
         if not candidate:
+            continue
+        if not passes_hard_filters(candidate, args.min_years_experience, allowed_work_modes):
             continue
         text = candidate_text(candidate)
         info = {
@@ -378,8 +459,6 @@ def main():
             "profile_score": profile_score(candidate, text),
             "honeypot": honeypot_analysis(candidate),
         }
-        if str(candidate.get("profile", {}).get("country", "")).lower() != "india":
-            continue
         if info["honeypot"]["severity"] >= args.honeypot_severity_threshold:
             continue
         ranked.append(

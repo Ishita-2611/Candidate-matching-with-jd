@@ -2,8 +2,6 @@
 .enc
 __pycache__/
 candidates.jsonl
-jd-semantic.json
-jd-embeddings.json
 output.json
 output*.json
 one_object_embeddings.json

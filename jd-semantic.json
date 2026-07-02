@@ -1,0 +1,166 @@
+{
+  "metadata": {
+    "years_of_experience": {
+      "minimum": 5,
+      "preferred": 6,
+      "flexible": true
+    },
+    "location": [
+      "Pune",
+      "Noida",
+      "Hyderabad",
+      "Mumbai",
+      "Delhi NCR"
+    ],
+    "country": "India",
+    "preferred_work_mode": "hybrid",
+    "notice_period_days": {
+      "preferred_max": 30,
+      "hard_cap": null
+    },
+    "salary_range_lpa": {
+      "min": null,
+      "max": null
+    },
+    "visa_sponsorship": false
+  },
+  "semantic_axes": {
+    "identity": {
+      "role_family": "AI Engineer",
+      "secondary_roles": [
+        "Applied ML Engineer",
+        "Search Engineer",
+        "Ranking Engineer",
+        "Information Retrieval Engineer"
+      ],
+      "seniority": "senior",
+      "career_transition": {
+        "from": "applied ML/AI roles at product companies",
+        "to": "owning the intelligence layer of Redrob's product"
+      }
+    },
+    "skills": {
+      "core_production_skills": [
+        "embeddings-based retrieval systems",
+        "vector databases or hybrid search infrastructure",
+        "Python"
+      ],
+      "ml_skills": [
+        "modern ML systems",
+        "LLMs",
+        "fine-tuning"
+      ],
+      "ml_infra_skills": [
+        "distributed systems",
+        "large-scale inference optimization"
+      ],
+      "weak_skills": [
+        "LLM fine-tuning experience",
+        "learning-to-rank models",
+        "HR-tech",
+        "recruiting tech",
+        "marketplace products"
+      ],
+      "noisy_non_relevant_skills": [
+        "LangChain tutorials",
+        "framework buzzwords",
+        "computer vision",
+        "speech",
+        "robotics"
+      ]
+    },
+    "experience_summary": {
+      "system_types": [
+        "ranking system",
+        "retrieval system"
+      ],
+      "scale": {
+        "daily_data_processed": "unknown",
+        "source_systems": 0,
+        "realtime_systems": true
+      },
+      "production_maturity": "high",
+      "ml_maturity": "high"
+    },
+    "experience_chunks": [
+      {
+        "id": "chunk_1",
+        "description": "5-9 years of experience with 4-5 years in applied ML/AI roles at product companies",
+        "tags": [
+          "ideal_signal"
+        ]
+      },
+      {
+        "id": "chunk_2",
+        "description": "production experience with embeddings-based retrieval systems and vector databases",
+        "tags": [
+          "requirement"
+        ]
+      },
+      {
+        "id": "chunk_3",
+        "description": "experience with evaluation frameworks for ranking systems",
+        "tags": [
+          "requirement"
+        ]
+      },
+      {
+        "id": "chunk_4",
+        "description": "not a pure research environment",
+        "tags": [
+          "disqualifier"
+        ]
+      },
+      {
+        "id": "chunk_5",
+        "description": "not primarily recent LangChain projects",
+        "tags": [
+          "disqualifier"
+        ]
+      },
+      {
+        "id": "chunk_6",
+        "description": "written production code in the last 18 months",
+        "tags": [
+          "requirement"
+        ]
+      }
+    ],
+    "domain": {
+      "primary_domains": [
+        "Talent Intelligence",
+        "Search",
+        "Information Retrieval"
+      ],
+      "secondary_domains": [
+        "HR-tech",
+        "recruiting tech",
+        "marketplace products"
+      ],
+      "missing_domains": [
+        "computer vision",
+        "speech",
+        "robotics"
+      ]
+    },
+    "execution_style": {
+      "shipping_bias": "high",
+      "product_mindset": "high",
+      "research_bias": "low",
+      "ambiguity_tolerance": "high",
+      "ownership": "high",
+      "system_design_depth": "high"
+    },
+    "trust_signals": {
+      "requires_active_platform_presence": true,
+      "weights": {
+        "recruiter_response_rate": "high",
+        "interview_completion_rate": "not_mentioned",
+        "offer_acceptance_rate": "not_mentioned",
+        "github_score": "not_mentioned",
+        "profile_completeness": "not_mentioned"
+      },
+      "notes": "active on Redrob platform"
+    }
+  }
+}
