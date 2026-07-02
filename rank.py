@@ -25,6 +25,13 @@ def load_id_map(path):
         return json.load(handle)
 
 
+def load_jd_semantic(path):
+    if not path or not os.path.exists(path):
+        return {}
+    with open(path, "r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
 def candidate_score(semantic_score, info):
     semantic = clamp01((semantic_score + 1.0) / 2.0)
     behavioral = clamp01(info.get("behavioral_score", 0.0))
@@ -53,6 +60,45 @@ def compact_reasoning(text):
     while len(tokens) < 15:
         tokens.append("fit")
     return " ".join(tokens)
+
+
+def jd_summary(jd_semantic):
+    axes = jd_semantic.get("semantic_axes", {})
+    identity = axes.get("identity", {})
+    skills = axes.get("skills", {})
+    role = identity.get("role_family") or "target role"
+    core_skills = skills.get("core_production_skills") or skills.get("ml_skills") or []
+    selected_skills = [str(skill) for skill in core_skills[:2] if skill]
+    return role, selected_skills
+
+
+def candidate_profile_phrase(info):
+    reasoning = str(info.get("reasoning", "")).strip()
+    if not reasoning:
+        return "Candidate"
+    profile = reasoning.split(";", 1)[0].strip().rstrip(".")
+    match = re.search(r"^(.*?)\s+with\s+([0-9.]+)\s+yrs\b", profile, flags=re.IGNORECASE)
+    if match:
+        role = " ".join(words(match.group(1))[:3]) or "Candidate"
+        return f"{role} {match.group(2)}y"
+    return " ".join(words(profile)[:3]) or "Candidate"
+
+
+def compact_skill(skill):
+    tokens = words(skill)
+    if len(tokens) <= 2:
+        return " ".join(tokens)
+    return " ".join(tokens[-2:])
+
+
+def jd_aware_reasoning(info, role, selected_skills):
+    profile = candidate_profile_phrase(info)
+    if selected_skills:
+        skill_phrase = ", ".join(compact_skill(skill) for skill in selected_skills)
+        text = f"{profile} fits {role} JD via {skill_phrase}, strong profile, low honeypot risk."
+    else:
+        text = f"{profile} fits {role} JD via semantic alignment, strong profile, low honeypot risk."
+    return compact_reasoning(text)
 
 
 def write_submission(rows, output_path):
@@ -154,6 +200,7 @@ def main():
     parser.add_argument("--id-map", default="id_map.json")
     parser.add_argument("--signals-cache", default="signals_cache.msgpack")
     parser.add_argument("--jd-vector", default="jd_vector.npy")
+    parser.add_argument("--jd-semantic", default="jd-semantic.json")
     parser.add_argument("--top-k", type=int, default=2000)
     parser.add_argument("--limit", type=int, default=100)
     parser.add_argument("--honeypot-severity-threshold", type=float, default=3.0)
@@ -162,6 +209,7 @@ def main():
     index = faiss.read_index(args.faiss_index)
     ids = load_id_map(args.id_map)
     cache = load_cache(args.signals_cache)
+    role, selected_skills = jd_summary(load_jd_semantic(args.jd_semantic))
     jd_vector = np.load(args.jd_vector).astype("float32").reshape(1, -1)
     faiss.normalize_L2(jd_vector)
 
@@ -179,12 +227,7 @@ def main():
             {
                 "candidate_id": candidate_id,
                 "score": final_score,
-                "reasoning": compact_reasoning(
-                    info.get(
-                        "reasoning",
-                        "Selected for strong semantic match, relevant skills, behavioral fit, and low honeypot risk.",
-                    )
-                ),
+                "reasoning": jd_aware_reasoning(info, role, selected_skills),
             }
         )
 

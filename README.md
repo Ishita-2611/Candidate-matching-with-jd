@@ -9,7 +9,7 @@ OFFLINE, run before submission
 candidates.jsonl -> semantic batches -> BGE-M3 embeddings in Qdrant -> RAG analysis / FAISS snapshot + signal cache
 
 ONLINE, submission window
-faiss_index.bin + id_map.json + jd_vector.npy + signals_cache.msgpack -> rank.py -> submission.csv + submission.xlsx
+faiss_index.bin + id_map.json + jd_vector.npy + jd-semantic.json + signals_cache.msgpack -> rank.py -> submission.csv + submission.xlsx
 ```
 
 The online ranking step is CPU-only, no-network, and does not call Qdrant or any LLM API.
@@ -211,10 +211,10 @@ jd_vector.npy
 ## Online Submission Command
 
 ```powershell
-python rank.py --candidates candidates.jsonl --out submission.csv --xlsx-out submission.xlsx
+python rank.py --candidates candidates.jsonl --out submission.csv --xlsx-out submission.xlsx --jd-semantic jd-semantic.json
 ```
 
-`rank.py` excludes candidates with honeypot severity `>= 3` from the top-100 output, limits each justification to 15-18 words, and writes both CSV and XLSX.
+`rank.py` excludes candidates with honeypot severity `>= 3` from the top-100 output, limits each justification to 15-18 words, and writes both CSV and XLSX. The ranking depends on `jd_vector.npy`; the justification text also uses `jd-semantic.json` so each submission is tied to the current JD.
 
 `rank.py` loads:
 
@@ -223,6 +223,7 @@ faiss_index.bin
 id_map.json
 signals_cache.msgpack
 jd_vector.npy
+jd-semantic.json
 ```
 
 It writes exactly:
@@ -248,7 +249,7 @@ npm run rag:rank
 npm run detect:honeypots
 python precompute_signals.py --candidates candidates.jsonl --out signals_cache.msgpack
 python export_faiss_snapshot.py --jd-embeddings jd-embeddings.json
-python rank.py --candidates candidates.jsonl --out submission.csv --xlsx-out submission.xlsx
+python rank.py --candidates candidates.jsonl --out submission.csv --xlsx-out submission.xlsx --jd-semantic jd-semantic.json
 ```
 
 ## Generated Files
