@@ -1,4 +1,1 @@
-faiss-cpu
-msgpack
-numpy
-requests
+# Final ranking uses only the Python standard library.

@@ -1,6 +1,0 @@
-{"candidate_id":"CAND_0071391","error":"Expected ',' or '}' after property value in JSON at position 1894 (line 1 column 1895)"}
-{"candidate_id":"CAND_0071469","error":"Expected ',' or ']' after array element in JSON at position 1202 (line 1 column 1203)"}
-{"candidate_id":"CAND_0072794","error":"Expected ',' or ']' after array element in JSON at position 1337 (line 1 column 1338)"}
-{"candidate_id":"CAND_0073174","error":"429 429 {\"error\":\"Your project has a rate limit of 3 concurrent requests. Add a payment method to automatically increase your rate limit to 20 concurrent requests. https://app.openpipe.ai/p/5YzL06wkXC/billing\"}"}
-{"candidate_id":"CAND_0077420","error":"Expected ',' or ']' after array element in JSON at position 1380 (line 1 column 1381)"}
-{"candidate_id":"CAND_0079705","error":"Expected ',' or ']' after array element in JSON at position 1161 (line 1 column 1162)"}

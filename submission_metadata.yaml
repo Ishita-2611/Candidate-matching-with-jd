@@ -1,0 +1,18 @@
+team_name: "TODO"
+primary_contact_name: "TODO"
+primary_contact_email: "TODO"
+primary_contact_phone: "TODO"
+github_repository_url: "TODO"
+sandbox_or_demo_link: "TODO"
+ai_tools_declared:
+  - ChatGPT
+compute_environment_summary: "Windows laptop, CPU-only ranking, Python 3.12"
+team_members:
+  - name: "TODO"
+    email: "TODO"
+methodology_summary: >
+  Precomputed BGE-M3 semantic retrieval candidates from Qdrant for the released
+  Senior AI Engineer JD. The final offline ranker reranks those candidates using
+  candidate profile text, JD skill evidence, India/location fit, 5-9 year
+  experience fit, Redrob behavioral availability signals, notice-period
+  penalties, disqualifier checks, and honeypot/impossible-profile detection.
