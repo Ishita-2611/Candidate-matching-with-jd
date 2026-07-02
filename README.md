@@ -56,7 +56,8 @@ $env:QDRANT_URL="https://your-cluster.region.cloud.qdrant.io"
 $env:QDRANT_API_KEY="..."
 $env:QDRANT_COLLECTION="candidate_semantic_multivectors_bge_m3"
 $env:JD_EMBEDDINGS_FILE="jd-embeddings.json"
-$env:RETRIEVAL_LIMIT="20000"
+$env:RETRIEVAL_ALL="true"
+$env:RETRIEVAL_SCROLL_BATCH_SIZE="512"
 npm run precompute:retrieval
 ```
 
