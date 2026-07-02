@@ -9,7 +9,7 @@ OFFLINE, run before submission
 candidates.jsonl -> semantic batches -> BGE-M3 embeddings in Qdrant -> RAG analysis / FAISS snapshot + signal cache
 
 ONLINE, submission window
-faiss_index.bin + id_map.json + jd_vector.npy + signals_cache.msgpack -> rank.py -> submission.csv
+faiss_index.bin + id_map.json + jd_vector.npy + signals_cache.msgpack -> rank.py -> submission.csv + submission.xlsx
 ```
 
 The online ranking step is CPU-only, no-network, and does not call Qdrant or any LLM API.
@@ -21,15 +21,15 @@ npm install
 pip install -r requirements.txt
 ```
 
-Copy `.env.example` to `.env` and set `GROQ_API_KEY` only for offline LLM preprocessing.
+Copy `.env.example` to `.env`. Set `QDRANT_URL` and `QDRANT_API_KEY` for Qdrant Cloud before embedding or searching.
 
-Start local Qdrant when embedding/exporting:
+Local Qdrant is optional for development:
 
 ```powershell
 npm run qdrant:up
 ```
 
-Qdrant dashboard:
+Local Qdrant dashboard:
 
 ```text
 http://localhost:6333/dashboard
@@ -65,7 +65,7 @@ $env:EXECUTION_STYLE_PROVIDER="local"
 npm run generate:local-batches
 ```
 
-The `batches/` folder is kept for embeddings and can be pushed later when ready.
+Use the fine-tuned batch folders for embeddings. The old local deterministic `batches/` folder is no longer part of the repo.
 
 ### 2B. Fine-Tune Semantic Generator
 
@@ -96,12 +96,14 @@ $env:FINETUNED_LIMIT="1000"
 npm run generate:finetuned
 ```
 
-This writes to `batches_finetuned/` by default. Point `BATCHES_DIR` to that folder before embedding if you want to use fine-tuned semantic text.
+This writes to `batches_finetuned/` by default. Point `BATCHES_DIR` to the fine-tuned folder you want to embed.
 
 ### 3. Embed Candidates In Qdrant
 
 ```powershell
-$env:BATCHES_DIR="batches"
+$env:BATCHES_DIR="batches_finetuned_1-20k"
+$env:QDRANT_URL="https://your-cluster-id.region.cloud.qdrant.io"
+$env:QDRANT_API_KEY="..."
 $env:QDRANT_COLLECTION="candidate_semantic_multivectors_bge_m3"
 npm run embed:batches
 ```
@@ -118,7 +120,7 @@ trust_signals
 default
 ```
 
-Do not delete `qdrant_storage/` after embeddings if you want local Qdrant data to persist.
+For Qdrant Cloud, the API key is sent using the `api-key` header by the Node scripts. Do not commit `.env`.
 
 ### 4. Embed JD
 
@@ -209,8 +211,10 @@ jd_vector.npy
 ## Online Submission Command
 
 ```powershell
-python rank.py --candidates candidates.jsonl --out submission.csv
+python rank.py --candidates candidates.jsonl --out submission.csv --xlsx-out submission.xlsx
 ```
+
+`rank.py` excludes candidates with honeypot severity `>= 3` from the top-100 output, limits each justification to 15-18 words, and writes both CSV and XLSX.
 
 `rank.py` loads:
 
@@ -244,7 +248,7 @@ npm run rag:rank
 npm run detect:honeypots
 python precompute_signals.py --candidates candidates.jsonl --out signals_cache.msgpack
 python export_faiss_snapshot.py --jd-embeddings jd-embeddings.json
-python rank.py --candidates candidates.jsonl --out submission.csv
+python rank.py --candidates candidates.jsonl --out submission.csv --xlsx-out submission.xlsx
 ```
 
 ## Generated Files

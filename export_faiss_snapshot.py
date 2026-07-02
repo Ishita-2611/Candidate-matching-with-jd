@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 
 import faiss
 import numpy as np
@@ -20,8 +21,14 @@ def load_jd_vector(path, vector_name):
     return normalize(vector)[0]
 
 
-def scroll_vectors(qdrant_url, collection, vector_name, batch_size):
+def qdrant_headers(api_key):
+    return {"api-key": api_key} if api_key else {}
+
+
+def scroll_vectors(qdrant_url, api_key, collection, vector_name, batch_size):
     offset = None
+    qdrant_url = qdrant_url.rstrip("/")
+    headers = qdrant_headers(api_key)
     while True:
         body = {
             "limit": batch_size,
@@ -30,7 +37,12 @@ def scroll_vectors(qdrant_url, collection, vector_name, batch_size):
         }
         if offset is not None:
             body["offset"] = offset
-        response = requests.post(f"{qdrant_url}/collections/{collection}/points/scroll", json=body, timeout=60)
+        response = requests.post(
+            f"{qdrant_url}/collections/{collection}/points/scroll",
+            headers=headers,
+            json=body,
+            timeout=60,
+        )
         response.raise_for_status()
         payload = response.json()["result"]
         points = payload["points"]
@@ -51,7 +63,8 @@ def scroll_vectors(qdrant_url, collection, vector_name, batch_size):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--qdrant-url", default="http://localhost:6333")
+    parser.add_argument("--qdrant-url", default=os.environ.get("QDRANT_URL", "http://localhost:6333"))
+    parser.add_argument("--qdrant-api-key", default=os.environ.get("QDRANT_API_KEY", ""))
     parser.add_argument("--collection", default="candidate_semantic_multivectors_bge_m3")
     parser.add_argument("--vector-name", default="default")
     parser.add_argument("--jd-embeddings", default="jd-embeddings.json")
@@ -63,7 +76,13 @@ def main():
 
     ids = []
     vectors = []
-    for candidate_id, vector in scroll_vectors(args.qdrant_url, args.collection, args.vector_name, args.batch_size):
+    for candidate_id, vector in scroll_vectors(
+        args.qdrant_url,
+        args.qdrant_api_key,
+        args.collection,
+        args.vector_name,
+        args.batch_size,
+    ):
         ids.append(candidate_id)
         vectors.append(vector)
         if len(ids) % 5000 == 0:

@@ -26,9 +26,10 @@ const vectorNames = [
 
 const embeddingModel = process.env.EMBEDDING_MODEL || "Xenova/bge-m3";
 const embeddingDimension = parsePositiveInt(process.env.EMBEDDING_DIM, 1024);
-const qdrantUrl = process.env.QDRANT_URL || "http://localhost:6333";
+const qdrantUrl = (process.env.QDRANT_URL || "http://localhost:6333").replace(/\/+$/, "");
+const qdrantApiKey = process.env.QDRANT_API_KEY || "";
 const qdrantCollection = process.env.QDRANT_COLLECTION || "candidate_semantic_multivectors_bge_m3";
-const batchesDir = process.env.BATCHES_DIR || "batches";
+const batchesDir = process.env.BATCHES_DIR || "batches_finetuned_1-20k";
 
 let extractorPromise;
 
@@ -133,6 +134,7 @@ async function qdrantRequest(path, { method = "GET", body } = {}) {
     method,
     headers: {
       connection: "close",
+      ...(qdrantApiKey ? { "api-key": qdrantApiKey } : {}),
       ...(body ? { "content-type": "application/json" } : {}),
     },
     body: body ? JSON.stringify(body) : undefined,
@@ -147,10 +149,8 @@ async function qdrantRequest(path, { method = "GET", body } = {}) {
 }
 
 async function ensureCollection() {
-  const existing = await fetch(`${qdrantUrl}/collections/${qdrantCollection}`);
-
-  if (existing.ok) {
-    const body = await existing.json();
+  try {
+    const body = await qdrantRequest(`/collections/${qdrantCollection}`);
     const vectors = body.result?.config?.params?.vectors ?? {};
     const existingNames = Object.keys(vectors).sort();
     const expectedNames = [...vectorNames].sort();
@@ -164,6 +164,10 @@ async function ensureCollection() {
     }
 
     return;
+  } catch (error) {
+    if (!String(error.message || "").includes("failed: 404")) {
+      throw error;
+    }
   }
 
   await qdrantRequest(`/collections/${qdrantCollection}`, {
@@ -193,6 +197,23 @@ async function upsertPoints(points) {
   });
 }
 
+async function existingPointIds(ids) {
+  if (ids.length === 0) {
+    return new Set();
+  }
+
+  const body = await qdrantRequest(`/collections/${qdrantCollection}/points`, {
+    method: "POST",
+    body: {
+      ids,
+      with_payload: false,
+      with_vector: false,
+    },
+  });
+
+  return new Set((body.result ?? []).map((point) => point.id));
+}
+
 function batchFiles() {
   return readdirSync(batchesDir)
     .filter((name) => /^output_batch\d{4}\.json$/i.test(name))
@@ -205,9 +226,11 @@ async function embedBatches() {
   const startOffset = parsePositiveInt(process.env.EMBED_START_OFFSET, 0);
   const upsertBatchSize = parsePositiveInt(process.env.QDRANT_UPSERT_BATCH_SIZE, 4);
   const concurrency = parsePositiveInt(process.env.EMBED_CONCURRENCY, 1);
+  const skipExisting = process.env.EMBED_SKIP_EXISTING !== "false";
   const files = batchFiles();
   let seen = 0;
   let processed = 0;
+  let skipped = 0;
   let points = [];
   let collectionReady = false;
   let pending = [];
@@ -219,6 +242,7 @@ async function embedBatches() {
   console.log(`Start offset: ${startOffset}`);
   console.log(`Limit: ${limit === Number.MAX_SAFE_INTEGER ? "all" : limit}`);
   console.log(`Embedding concurrency: ${concurrency}`);
+  console.log(`Skip existing Qdrant points: ${skipExisting}`);
 
   async function flushPending() {
     if (pending.length === 0) {
@@ -227,17 +251,42 @@ async function embedBatches() {
 
     const chunk = pending;
     pending = [];
-    const builtPoints = await Promise.all(chunk.map(({ semanticObject, file }) => buildPoint(semanticObject, file)));
+
+    if (!collectionReady) {
+      await ensureCollection();
+      collectionReady = true;
+    }
+
+    const missingChunk = skipExisting
+      ? chunk.filter(({ semanticObject }) => true)
+      : chunk;
+
+    let workChunk = missingChunk;
+    if (skipExisting) {
+      const existingIds = await existingPointIds(
+        chunk.map(({ semanticObject }) => qdrantPointId(semanticObject.candidate_id))
+      );
+      workChunk = chunk.filter(({ semanticObject }) => {
+        const exists = existingIds.has(qdrantPointId(semanticObject.candidate_id));
+        if (exists) {
+          skipped += 1;
+        }
+        return !exists;
+      });
+    }
+
+    if (workChunk.length === 0) {
+      console.log(`Skipped ${skipped} existing candidates`);
+      return;
+    }
+
+    const builtPoints = await Promise.all(workChunk.map(({ semanticObject, file }) => buildPoint(semanticObject, file)));
     points.push(...builtPoints);
     processed += builtPoints.length;
 
     if (points.length >= upsertBatchSize) {
-      if (!collectionReady) {
-        await ensureCollection();
-        collectionReady = true;
-      }
       await upsertPoints(points);
-      console.log(`Upserted ${processed} candidates`);
+      console.log(`Upserted ${processed} candidates${skipped ? `, skipped ${skipped} existing` : ""}`);
       points = [];
     }
   }
@@ -276,7 +325,9 @@ async function embedBatches() {
   }
 
   await upsertPoints(points);
-  console.log(`Done. Upserted ${processed} candidate points into ${qdrantCollection}.`);
+  console.log(
+    `Done. Upserted ${processed} candidate points into ${qdrantCollection}.${skipped ? ` Skipped ${skipped} existing points.` : ""}`
+  );
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
