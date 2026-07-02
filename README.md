@@ -43,10 +43,13 @@ The final `rank.py` path uses:
   - Suspicious Redrob signal contradictions.
   - Severe honeypot candidates are excluded.
 - Concise 1-2 sentence reasoning using only candidate facts.
+  ![Ranking](images/ranking.png)
 
 ## Architecture
 
 The full pipeline has two phases.
+
+![Pipeline](images/pipeline.png)
 
 **Offline precompute phase**
 
@@ -58,6 +61,7 @@ The full pipeline has two phases.
    - metadata needed for hard filtering
 5. Embed the JD with the same BGE-M3 axes.
 6. Query Qdrant to create `retrieval_candidates.json`.
+   ![Qdrant storage](images/qdrant.png)
 
 **Final ranking phase**
 
@@ -71,19 +75,18 @@ The full pipeline has two phases.
 
 - `submission.csv`  
   Final top-100 output.
-
 - `rank.py`  
   Final offline ranker used for the submitted CSV.
-
 - `retrieval_candidates.json`  
-  Precomputed Qdrant retrieval scores used by `rank.py`.
+   Precomputed Qdrant retrieval scores used by `rank.py`.
+  ![Retrieval](images/retrieval.png)
 
 - `candidate_qdrant_embedding_example.json`  
-  One complete trace for `CAND_0011687`: raw dataset object, semantic batch object, and the actual Qdrant stored embeddings. It shows the vector names and full 1024-dimensional vectors for each axis.
+   One complete trace for `CAND_0011687`: raw dataset object, semantic batch object, and the actual Qdrant stored embeddings. It shows the vector names and full 1024-dimensional vectors for each axis.
+  ![Google Colab embedding](images/googlecollabembedding.png)
 
 - `jd-semantic.json` and `jd-embeddings.json`  
   Parsed semantic JD and BGE-M3 JD embeddings.
-
 - `submission_metadata.yaml`  
   Portal metadata file. Fill the remaining `TODO` values before final upload.
 
@@ -126,6 +129,8 @@ $env:FINETUNED_LIMIT="1000"
 $env:FINETUNED_CONCURRENCY="3"
 npm run generate:finetuned
 ```
+
+![Semantic batch generation](images/semanticbatchgeneration.png)
 
 Embed semantic batches into Qdrant:
 
@@ -224,4 +229,3 @@ Intentionally not committed:
 - `qdrant_storage/`.
 - Generated semantic batch folders.
 - The full `candidates.jsonl` dataset. Use the official hackathon bundle copy in the repo root when reproducing locally.
-
