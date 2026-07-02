@@ -11,8 +11,12 @@ team_members:
   - name: "Ishita-2611"
     email: "23bec045@nith.ac.in"
 methodology_summary: >
-  Precomputed BGE-M3 semantic retrieval candidates from Qdrant for the released
-  Senior AI Engineer JD. The final offline ranker reranks those candidates using
-  candidate profile text, JD skill evidence, India/location fit, 5-9 year
-  experience fit, Redrob behavioral availability signals, notice-period
-  penalties, disqualifier checks, and honeypot/impossible-profile detection.
+  Candidate JSON was converted into structured semantic text using LLM-generated
+  examples and a fine-tuned semantic generation model. The semantic candidate
+  axes were embedded with BGE-M3 on GPU and stored as named vectors in Qdrant
+  Cloud. The job description was parsed into the same semantic schema and
+  embedded with the same vector model. Retrieval used JD-to-candidate vector
+  similarity from Qdrant, then the final offline ranker applied weighted JD-fit
+  scores, hard metadata filters, Redrob behavioral signals, disqualifier
+  penalties, honeypot/impossible-profile detection, and deterministic reasoning
+  to produce the top 100 candidates.
