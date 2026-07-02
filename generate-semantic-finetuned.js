@@ -5,13 +5,12 @@ import { pathToFileURL } from "node:url";
 
 import { toChatExample } from "./prepare-finetune-data.js";
 
-try {
-  process.loadEnvFile?.();
-} catch (error) {
-  if (error.code !== "ENOENT") {
-    throw error;
-  }
-}
+import dotenv from "dotenv";
+
+dotenv.config({
+  path: process.env.ENV_FILE || ".env",
+  override: true,
+});
 
 function parsePositiveInt(value, fallback) {
   const parsed = Number.parseInt(value, 10);
