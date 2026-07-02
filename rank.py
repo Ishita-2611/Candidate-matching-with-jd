@@ -471,7 +471,9 @@ def main():
             }
         )
 
-    ranked.sort(key=lambda row: (-row["score"], row["candidate_id"]))
+    # The official validator checks tie-breaks on the submitted score string.
+    # Sort by rounded score so CSV-level ties are deterministic by candidate_id.
+    ranked.sort(key=lambda row: (-round(row["score"], 4), row["candidate_id"]))
     rows = []
     previous = math.inf
     for rank, item in enumerate(ranked[: args.limit], start=1):
