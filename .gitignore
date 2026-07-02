@@ -1,7 +1,6 @@
 .env
 .enc
 __pycache__/
-candidates.jsonl
 output.json
 output*.json
 one_object_embeddings.json
