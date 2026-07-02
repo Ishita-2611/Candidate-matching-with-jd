@@ -1,15 +1,15 @@
-team_name: "TODO"
-primary_contact_name: "TODO"
-primary_contact_email: "TODO"
-primary_contact_phone: "TODO"
-github_repository_url: "TODO"
-sandbox_or_demo_link: "TODO"
+team_name: "algora"
+primary_contact_name: "Ishita-2611"
+primary_contact_email: "23bec045@nith.ac.in"
+primary_contact_phone: "not_provided"
+github_repository_url: "https://github.com/Ishita-2611/Candidate-matching-with-jd"
+sandbox_or_demo_link: "https://github.com/Ishita-2611/Candidate-matching-with-jd#docker-reproduction"
 ai_tools_declared:
   - ChatGPT
 compute_environment_summary: "Windows laptop, CPU-only ranking, Python 3.12"
 team_members:
-  - name: "TODO"
-    email: "TODO"
+  - name: "Ishita-2611"
+    email: "23bec045@nith.ac.in"
 methodology_summary: >
   Precomputed BGE-M3 semantic retrieval candidates from Qdrant for the released
   Senior AI Engineer JD. The final offline ranker reranks those candidates using

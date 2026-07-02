@@ -1,0 +1,10 @@
+.git
+.env
+node_modules
+model_cache
+qdrant_storage
+__pycache__
+batches*
+execution_style_cache
+*.xlsx
+~$*.xlsx

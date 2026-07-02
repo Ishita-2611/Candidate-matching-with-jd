@@ -20,6 +20,25 @@ This is the single command used to reproduce the final CSV. It runs offline, CPU
 
 The checked-in `retrieval_candidates.json` is the precomputed retrieval artifact. Precomputation may take longer than the final ranking window, but the final ranking command above is the only command needed to regenerate `submission.csv`.
 
+## Docker Reproduction
+
+The final ranking step can also be run in Docker. The official `candidates.jsonl`
+is intentionally not committed; place it in the repo root first.
+
+Build:
+
+```powershell
+docker build -t algora-redrob-ranker .
+```
+
+Run:
+
+```powershell
+docker run --rm -v ${PWD}/candidates.jsonl:/app/candidates.jsonl -v ${PWD}/submission.csv:/app/submission.csv algora-redrob-ranker
+```
+
+This Docker path is the sandbox fallback for the submission metadata. It runs the same offline ranking command and does not require network access during ranking.
+
 ## What The Ranker Does
 
 The final `rank.py` path uses:
@@ -88,7 +107,7 @@ The full pipeline has two phases.
 - `jd-semantic.json` and `jd-embeddings.json`  
   Parsed semantic JD and BGE-M3 JD embeddings.
 - `submission_metadata.yaml`  
-  Portal metadata file. Fill the remaining `TODO` values before final upload.
+  Portal metadata file mirroring the required submission metadata.
 
 ## Pipeline Commands
 
