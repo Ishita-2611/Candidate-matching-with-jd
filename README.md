@@ -17,7 +17,9 @@ The full pipeline has two phases.
 **Offline precompute phase**
 
 1. Parse the JD into a structured semantic JD.
-2. Generate/prepare semantic candidate text.
+2. Prepare Fine-Tuning Dataset.Evaluate Fine-Tuned Model.Generate/prepare semantic candidate text.
+   ![Finetuned Model](images/OpenPipe.png)
+
 3. Embed candidate semantic axes with BGE-M3 named vectors.
 4. Store vectors in Qdrant Cloud with minimal payload:
    - `candidate_id`
